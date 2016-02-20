@@ -9,7 +9,7 @@ import tictactoe.PieceType;
  * 
  * @author Jarett Lee
  */
-public abstract class CharBoard extends Board{
+public abstract class CharBoard extends Board {
 	/**
 	 * board a 2d array of characters that keep track of the pieces on the board
 	 */
@@ -47,7 +47,8 @@ public abstract class CharBoard extends Board{
 		if (canPlace(piece, c)) {
 			place(piece, c);
 		} else {
-			throw new PlacementFailedException();
+			throw new PlacementFailedException(
+					"The piece cannot be placed on square (" + c.getX() + " , " + c.getY() + ")");
 		}
 	}
 
@@ -91,8 +92,8 @@ public abstract class CharBoard extends Board{
 	 * For every column, put a number. For every row, put a letter. Place the
 	 * single letter representation of the piece inside the grid.
 	 * 
-	 * @return a text created board with all the square names and
-	 * pieces on the squares shown.
+	 * @return a text created board with all the square names and pieces on the
+	 *         squares shown.
 	 */
 	public String toString() {
 		String out = " ";
@@ -119,10 +120,9 @@ public abstract class CharBoard extends Board{
 	}
 
 	public abstract char gameEnd();
-	
+
 	public boolean squareExists(Coordinate out) {
-		return out.getX() >= 0 && out.getX() < board.length &&
-				out.getY() >= 0 && out.getY() < board[0].length;
+		return out.getX() >= 0 && out.getX() < board.length && out.getY() >= 0 && out.getY() < board[0].length;
 	}
 
 	/**
