@@ -1,5 +1,6 @@
 package tictactoe;
 
+import exception.InputInvalidException;
 import exception.PlacementFailedException;
 import game.AbstractGame;
 import game.Coordinate;
@@ -38,10 +39,8 @@ public class TicTacToe extends AbstractGame {
 
 		} catch (PlacementFailedException e) {
 			errorMessage(e.toString());
-		} catch (ArrayIndexOutOfBoundsException e) {
+		} catch (InputInvalidException e) {
 			errorMessage(e.toString());
-		} catch (NullPointerException e) {
-			errorMessage("InputFailed");
 		}
 
 	}
