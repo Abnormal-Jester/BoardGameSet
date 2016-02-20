@@ -2,6 +2,8 @@ package game;
 
 import java.util.Scanner;
 
+import exception.InputInvalidException;
+
 public class CustomScanner {
 	private final Scanner console;
 
@@ -102,37 +104,36 @@ public class CustomScanner {
 		// val[0] is the first input (the character / y value)
 		// val[1] is the second input (the number / x value)
 		int[] val = new int[2];
-		Coordinate out;
-		
+
 		try {
 			temp = console.nextLine();
 			checkEscape(temp, game);
 
+			// remove all blank spaces
 			temp = temp.replaceAll("\\s", "");
 
-			// accept "a2" and "b 3" form
+			// accept letter number form: a2
 			if (temp.length() == 2) {
 				val[0] = temp.toUpperCase().charAt(0) - 65;
 				val[1] = Character.getNumericValue(temp.charAt(1)) - 1;
-				
-				out = new Coordinate(val[0], val[1]);
-				
-				// reject all numbers out of bounds
-				if (game.getBoard().squareExists(out)) {
-					errorMessage("ValuesOutOfBoardBounds");
-					return null;
-				}
-
-				return out;
 			} else {
-				return null;
+				throw new InputInvalidException("Number of valid characters not 2: " + temp.length());
 			}
+
 		} catch (Exception e) {
 			System.out.println("Unexpected Error");
 			e.printStackTrace(System.out);
+			throw new InputInvalidException();
+		}
+		
+		Coordinate out = new Coordinate(val[0], val[1]);
+
+		// reject all numbers out of bounds
+		if (game.getBoard().squareExists(out)) {
+			throw new InputInvalidException("No square on those coordinates exist: " + temp);
 		}
 
-		return null;
+		return out;
 	}
 
 	public void pressToContinue() {
