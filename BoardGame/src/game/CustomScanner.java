@@ -103,6 +103,7 @@ public class CustomScanner {
 		// val[1] is the second input (the number / x value)
 		int[] val = new int[2];
 		Coordinate out;
+		
 		try {
 			temp = console.nextLine();
 			checkEscape(temp, game);
@@ -113,13 +114,14 @@ public class CustomScanner {
 			if (temp.length() == 2) {
 				val[0] = temp.toUpperCase().charAt(0) - 65;
 				val[1] = Character.getNumericValue(temp.charAt(1)) - 1;
-
+				
+				out = new Coordinate(val[0], val[1]);
+				
 				// reject all numbers out of bounds
-				if (val[0] > 9 || val[0] < 0 || val[1] > 9 || val[1] < 0) {
+				if (game.getBoard().squareExists(out)) {
 					errorMessage("ValuesOutOfBoardBounds");
 					return null;
 				}
-				out = new Coordinate(val[0], val[1]);
 
 				return out;
 			} else {

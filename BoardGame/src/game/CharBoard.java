@@ -119,6 +119,11 @@ public abstract class CharBoard extends Board{
 	}
 
 	public abstract char gameEnd();
+	
+	public boolean squareExists(Coordinate out) {
+		return out.getX() >= 0 && out.getX() < board.length &&
+				out.getY() >= 0 && out.getY() < board[0].length;
+	}
 
 	/**
 	 * This method returns the board that the game is placed on.
