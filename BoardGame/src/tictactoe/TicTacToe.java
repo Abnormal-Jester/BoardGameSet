@@ -30,18 +30,21 @@ public class TicTacToe extends AbstractGame {
 
 		try {
 			input = console.getSquareCoordinates(this);
-			System.out.println();
-
-			getBoard().attemptPlace(team[currentIndex].getPieceType(), input);
-
-			printBoard();
-			currentIndex = currentIndex == 0 ? 1 : 0;
-
-		} catch (PlacementFailedException e) {
-			errorMessage(e.toString());
 		} catch (InputInvalidException e) {
 			errorMessage(e.toString());
+			return;
 		}
+		System.out.println();
+
+		try {
+			getBoard().attemptPlace(team[currentIndex].getPieceType(), input);
+		} catch (PlacementFailedException e) {
+			errorMessage(e.toString());
+			return;
+		}
+
+		printBoard();
+		currentIndex = currentIndex == 0 ? 1 : 0;
 
 	}
 
