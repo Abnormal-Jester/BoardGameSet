@@ -12,12 +12,14 @@ public class MinesweeperBoard extends CharBoard {
 	public static final PieceType OPEN = PieceType.O;
 
 	/** This 2d array shows the user the number of bombs around each square */
-	private int[][] visibleBoard;
+	private final int[][] visibleBoard;
 	/**
 	 * This board keeps track of the size of the board because the value is used
 	 * often
 	 */
-	private int size;
+	private final int size;
+	/** This is the number of bombs that should be on the board */
+	private final int numOfBombs;
 
 	// The previous board tracks the revealed squares and the squares with bombs
 	// on them
@@ -26,6 +28,7 @@ public class MinesweeperBoard extends CharBoard {
 		super(size);
 		visibleBoard = new int[size][size];
 		this.size = size;
+		numOfBombs = (size * size + 4) / 5;
 		generateVisibleBoard();
 	}
 
@@ -72,9 +75,30 @@ public class MinesweeperBoard extends CharBoard {
 		return getBoard()[c.getX()][c.getY()] != OPEN.getChar();
 	}
 
+	/**
+	 * This method detects if the user had ended the game by either revealed a
+	 * bomb (a loss) or filling the board (a win).
+	 * 
+	 * @return a character that corresponds to a win or loss
+	 */
 	@Override
 	public char gameEnd() {
-		// TODO Auto-generated method stub
+		// The user had removed a bomb by revealing it
+		if (countBombs() != numOfBombs)
+			return BOMB.getChar();
+		// The user has not revealed every square
+		Coordinate c;
+		for (int j = 0; j < size; j++)
+			for (int i = 0; i < size; i++) {
+				c = new Coordinate(j, i);
+				if(isEmpty(c)) return ' ';
+			}
+		// The user has revealed every square
+		return OPEN.getChar();
+	}
+
+	public int countBombs() {
+		// TODO
 		return 0;
 	}
 
