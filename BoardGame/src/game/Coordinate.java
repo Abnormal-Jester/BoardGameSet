@@ -20,4 +20,13 @@ public class Coordinate {
 	public int getY() {
 		return y;
 	}
+
+	@Override
+	public String toString() {
+		return "( " + x + " , " + " )";
+	}
+
+	public String toAlphaNumerical() {
+		return "" + (char) ('A' + y) + (x + 1);
+	}
 }
