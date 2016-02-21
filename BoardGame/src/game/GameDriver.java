@@ -11,7 +11,7 @@ public class GameDriver {
 		CustomScanner console = new CustomScanner();
 
 		while (true) {
-			System.out.println("1. TicTacToe\n2.Minesweeper\n3. Othello\n4. Help\n5. Exit");
+			System.out.println("1. TicTacToe\n2. Minesweeper\n3. Othello\n4. Help\n5. Exit");
 			System.out.print("Please enter the number of the game you want " + "to play: ");
 
 			selection = console.getInt(1, 5);
