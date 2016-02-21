@@ -32,32 +32,55 @@ public class MinesweeperBoard extends CharBoard {
 		generateVisibleBoard();
 	}
 
+	/**
+	 * This method gives an initial value to every integer inside of the array
+	 * corresponding to the number surrounding that square.
+	 */
 	public void generateVisibleBoard() {
 		for (int j = 0; j < size; j++) {
 			for (int i = 0; i < size; i++) {
 
 				if (getBoard()[j][i] == BOMB.getChar())
-					visibleBoard[j][i] = 0;
+					visibleBoard[j][i] = 9; // a value of 9 means that the
+											// square has a bomb on it
 				else
 					visibleBoard[j][i] = numOfSurroundingBombs(j, i);
 			}
 		}
 	}
 
+	/**
+	 * This method counts the number of bombs surrounding a square
+	 * 
+	 * @param y
+	 *            a y coordinate
+	 * @param x
+	 *            an x coordinate
+	 * @return the total number of bombs surrounding a square
+	 */
 	public int numOfSurroundingBombs(int y, int x) {
-		// TODO
+		int bombs = 0;
+
+		bombs = hasBomb(1, 1) + hasBomb(1, 0) + hasBomb(1, -1) + hasBomb(0, 1) + hasBomb(0, -1) + hasBomb(-1, -1)
+				+ hasBomb(-1, 0) + hasBomb(-1, 1);
+
+		return bombs;
+	}
+
+	/**
+	 * This method takes a coordinate and returns 1 if a bomb is on the square
+	 * 
+	 * @param y
+	 *            a y coordinate
+	 * @param x
+	 *            an x coordinate
+	 * @return 1 if there is a bomb and 0 if there is not a bomb
+	 */
+	private int hasBomb(int y, int x) {
+		if (getBoard()[y][x] == BOMB.getChar())
+			return 1;
 		return 0;
 	}
-	// (1, 1)
-	// (1, 0)
-	// (1, -1)
-	//
-	// (0, 1)
-	// (0, -1)
-	//
-	// (-1, -1)
-	// (-1, 0)
-	// (-1, 1)
 
 	/**
 	 * This method verifies that a square can be revealed. For Minesweeper, this
@@ -91,7 +114,8 @@ public class MinesweeperBoard extends CharBoard {
 		for (int j = 0; j < size; j++)
 			for (int i = 0; i < size; i++) {
 				c = new Coordinate(j, i);
-				if(isEmpty(c)) return ' ';
+				if (isEmpty(c))
+					return ' ';
 			}
 		// The user has revealed every square
 		return OPEN.getChar();
