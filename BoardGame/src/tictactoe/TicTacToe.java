@@ -7,7 +7,8 @@ import game.Coordinate;
 
 public class TicTacToe extends AbstractGame {
 	/** This Team array contains both teams involved in Tic-Tac-Toe */
-	private final Team[] team;
+	private static final Team[] team = new Team[]{new Team(Team.TeamType.X), new Team(Team.TeamType.O)};
+	
 	/** This integer keeps track of the current team's turn. */
 	private int currentIndex;
 
@@ -17,10 +18,6 @@ public class TicTacToe extends AbstractGame {
 	 */
 	public TicTacToe() {
 		super(new TicTacToeBoard());
-
-		team = new Team[2];
-		team[0] = new Team(Team.TeamType.X);
-		team[1] = new Team(Team.TeamType.O);
 
 		currentIndex = 0;
 
