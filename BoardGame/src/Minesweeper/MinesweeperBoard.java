@@ -63,8 +63,12 @@ public class MinesweeperBoard extends CharBoard {
 		
 		int[] yOffset = {1, 1, 1, 0,0,-1,-1,-1};
 		int[] xOffset = {-1,0,1, -1,1,-1,0,1};
+		Coordinate c;
 		for(int i = 0; i <= 8; i++) {
-			bombs += hasBomb(y+yOffset[i], x+xOffset[i]);
+			c = new Coordinate(xOffset[i], yOffset[i]);
+			if(squareExists(c)) {
+				bombs += hasBomb(y+yOffset[i], x+xOffset[i]);
+			}
 		}
 		
 		return bombs;
