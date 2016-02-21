@@ -8,17 +8,17 @@ import game.CustomScanner;
  */
 public abstract class AbstractGame {
 	/**
-	 * console is a CustomScanner that is accessed by every game object that
-	 * extends AbstractGame
+	 * console is a CustomScanner that is accessed by every game. It interprets
+	 * the user's input into an output that the program can understand.
 	 */
 	private final static CustomScanner console = new CustomScanner();
-	/** this is keeps track of where the pieces in the game are placed */
+	/** board keeps track of where the pieces in the game are placed */
 	private final Board board;
-	/** this is a boolean value that determines if the game continues or ends */
+	/** play is a boolean value that determines if the game continues or ends */
 	private boolean play;
 
 	/**
-	 * The constructor for any game, only visible to its subclasses.
+	 * The constructor for a game, only visible to its subclasses.
 	 * 
 	 * @param board
 	 *            the board the game will be played on
@@ -42,32 +42,32 @@ public abstract class AbstractGame {
 	}
 
 	/**
-	 * This method ends the game loop, ending the game.
+	 * This method represents a single turn of one of the players in the game.
+	 */
+	public abstract void next();
+
+	/**
+	 * This method checks if the game should end.
+	 */
+	public abstract void check();
+	
+	/**
+	 * This method ends the game.
 	 */
 	public void endGame() {
 		play = false;
 	}
 
 	/**
-	 * This method represents a single turn of one of the players in the game.
-	 */
-	public abstract void next();
-
-	/**
-	 * This method checks if the game has ended and the program should close.
-	 */
-	public abstract void check();
-
-	/**
-	 * This method prints a text representation of the board to the system.
+	 * This method prints a text representation of the board to the system out stream.
 	 */
 	public void printBoard() {
 		System.out.println(board);
 	}
 
+	// TODO make it an error message to the player
 	/**
-	 * This method is for debugging purposes and eventually telling the user
-	 * what they did incorrectly.
+	 * This method is for debugging purposes.
 	 * 
 	 * @param error
 	 *            the exception name or a custom message
@@ -86,8 +86,7 @@ public abstract class AbstractGame {
 	}
 
 	/**
-	 * This method returns the custom input interpreter, CustomScanner, for all
-	 * games.
+	 * This method returns the custom input interpreter, CustomScanner.
 	 * 
 	 * @return the custom scanner for games
 	 */
