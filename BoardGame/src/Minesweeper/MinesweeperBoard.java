@@ -29,7 +29,31 @@ public class MinesweeperBoard extends CharBoard {
 		visibleBoard = new int[size][size];
 		this.size = size;
 		numOfBombs = (size * size + 4) / 5;
+		randomlyPlaceBombs();
 		generateVisibleBoard();
+		
+		// debugging purposes
+		System.out.println(numOfBombs);
+		System.out.println("Debugging:");
+		super.toString();
+	}
+	
+	public void randomlyPlaceBombs() {
+		int x, y;
+		Coordinate c;
+		
+		for(int i = numOfBombs; i > 0; i--) {
+			x = (int)(Math.random() * size);
+			y = (int)(Math.random() * size);
+			c = new Coordinate (x, y);
+			while(!isEmpty(c)) {
+				x = (int)(Math.random() * size);
+				y = (int)(Math.random() * size);
+				
+				c = new Coordinate(x, y);
+			}
+			getBoard()[y][x] = BOMB.getChar();
+		}
 	}
 
 	/**
