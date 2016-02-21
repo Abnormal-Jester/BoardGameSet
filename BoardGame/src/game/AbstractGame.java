@@ -12,9 +12,9 @@ public abstract class AbstractGame {
 	 * extends AbstractGame
 	 */
 	private final static CustomScanner console = new CustomScanner();
-	/** board is the Board that the pieces in the game will be placed on */
+	/** this is keeps track of where the pieces in the game are placed */
 	private final Board board;
-	/** play is the variable that determines if the game continues or ends */
+	/** this is a boolean value that determines if the game continues or ends */
 	private boolean play;
 
 	/**
