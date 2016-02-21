@@ -60,10 +60,13 @@ public class MinesweeperBoard extends CharBoard {
 	 */
 	public int numOfSurroundingBombs(int y, int x) {
 		int bombs = 0;
-
-		bombs = hasBomb(1, 1) + hasBomb(1, 0) + hasBomb(1, -1) + hasBomb(0, 1) + hasBomb(0, -1) + hasBomb(-1, -1)
-				+ hasBomb(-1, 0) + hasBomb(-1, 1);
-
+		
+		int[] yOffset = {1, 1, 1, 0,0,-1,-1,-1};
+		int[] xOffset = {-1,0,1, -1,1,-1,0,1};
+		for(int i = 0; i <= 8; i++) {
+			bombs += hasBomb(y+yOffset[i], x+xOffset[i]);
+		}
+		
 		return bombs;
 	}
 
