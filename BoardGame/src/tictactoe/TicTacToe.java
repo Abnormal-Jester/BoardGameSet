@@ -18,7 +18,7 @@ public class TicTacToe extends AbstractGame {
 	 */
 	public TicTacToe() {
 		super(new TicTacToeBoard());
-
+ 
 		currentIndex = 0;
 
 	}
@@ -26,6 +26,7 @@ public class TicTacToe extends AbstractGame {
 	/**
 	 * This method represents a single placement of a piece by one of the
 	 * players in the game. Then, the current team swaps.
+	 * If the user input fails, then the current team is not changed.
 	 */
 	@Override
 	public void next() {
