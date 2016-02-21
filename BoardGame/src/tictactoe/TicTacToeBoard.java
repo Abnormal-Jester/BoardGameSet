@@ -41,27 +41,27 @@ public class TicTacToeBoard extends CharBoard{
 	 */
 	@Override
 	public char gameEnd() {
-		char[][] board = getBoard();
+		char[][] tempBoard = getBoard();
 
 		// check rows
-		for (int i = 0; i < board.length; i++)
-			if (board[i][0] == board[i][1] && board[i][1] == board[i][2])
-				return board[i][0];
+		for (int i = 0; i < tempBoard.length; i++)
+			if (tempBoard[i][0] == tempBoard[i][1] && tempBoard[i][1] == tempBoard[i][2])
+				return tempBoard[i][0];
 
 		// check columns
-		for (int j = 0; j < board[0].length; j++)
-			if (board[0][j] == board[1][j] && board[1][j] == board[2][j])
-				return board[0][j];
+		for (int j = 0; j < tempBoard[0].length; j++)
+			if (tempBoard[0][j] == tempBoard[1][j] && tempBoard[1][j] == tempBoard[2][j])
+				return tempBoard[0][j];
 
 		// check diagonals
-		if (board[0][0] == board[1][1] && board[1][1] == board[2][2])
-			return board[1][1];
-		if (board[2][0] == board[1][1] && board[1][1] == board[0][2])
-			return board[1][1];
+		if (tempBoard[0][0] == tempBoard[1][1] && tempBoard[1][1] == tempBoard[2][2])
+			return tempBoard[1][1];
+		if (tempBoard[2][0] == tempBoard[1][1] && tempBoard[1][1] == tempBoard[0][2])
+			return tempBoard[1][1];
 
-		for (int i = 0; i < board.length; i++)
-			for (int j = 0; j < board[i].length; j++)
-				if (board[i][j] == ' ')
+		for (int i = 0; i < tempBoard.length; i++)
+			for (int j = 0; j < tempBoard[i].length; j++)
+				if (tempBoard[i][j] == ' ')
 					return ' ';
 
 		return '_';
