@@ -168,8 +168,8 @@ public class CustomScanner {
 				System.out.println("Thank you for playing");
 				System.exit(0);
 			}
-			if (str.equals("RESTART") || str.equals("RESET")) {
-				System.out.println("Messy restart, please wait");
+			if (str.equals("BACK") || str.equals("MENU")) {
+				System.out.println("Thank you for playing");
 				game.endGame();
 				return;
 			}
