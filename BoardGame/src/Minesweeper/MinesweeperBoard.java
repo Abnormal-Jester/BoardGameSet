@@ -205,7 +205,7 @@ public class MinesweeperBoard extends CharBoard {
 			return Integer.toString(visibleBoard[y][x]).charAt(0);
 		}
 		// otherwise, just show the piece (which should be ' ')
-		return getBoard()[y][x];
+		return ' ';
 	}
 
 }
