@@ -47,7 +47,7 @@ public abstract class CharBoard extends Board {
 			place(piece, c);
 		} else {
 			throw new PlacementFailedException(
-					"The piece cannot be placed on square (" + c.getX() + " , " + c.getY() + ")");
+					"The piece cannot be placed on square \"" + c.toAlphaNumerical() + '\"');
 		}
 	}
 
