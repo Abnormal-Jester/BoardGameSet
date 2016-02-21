@@ -60,18 +60,18 @@ public class MinesweeperBoard extends CharBoard {
 	 */
 	public int numOfSurroundingBombs(int y, int x) {
 		int bombs = 0;
-		
-		int[] yOffset = {1, 1, 1, 0,0,-1,-1,-1};
-		int[] xOffset = {-1,0,1, -1,1,-1,0,1};
+
+		int[] yOffset = { 1, 1, 1, 0, 0, -1, -1, -1 };
+		int[] xOffset = { -1, 0, 1, -1, 1, -1, 0, 1 };
 		Coordinate c;
-		for(int i = 0; i < 8; i++) {
-			c = new Coordinate(x+xOffset[i], y+yOffset[i]);
-			if(squareExists(c)) {
-				System.out.println(c.getX() +" " + c.getY());
+		for (int i = 0; i < 8; i++) {
+			c = new Coordinate(x + xOffset[i], y + yOffset[i]);
+			if (squareExists(c)) {
+				System.out.println(c.getX() + " " + c.getY());
 				bombs += hasBomb(c.getY(), c.getX());
 			}
 		}
-		
+
 		return bombs;
 	}
 
