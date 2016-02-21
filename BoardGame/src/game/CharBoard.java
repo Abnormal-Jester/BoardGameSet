@@ -65,8 +65,7 @@ public abstract class CharBoard extends Board {
 	}
 
 	/**
-	 * This method verifies that a piece can be placed on this square. For
-	 * TicTacToe, this only involves checking if the coordinate is empty.
+	 * This method verifies that a piece can be placed on this square.
 	 * 
 	 * @param piece
 	 *            the piece that will be checked
