@@ -23,11 +23,10 @@ public class TicTacToe extends AbstractGame {
 
 	}
 
-	// There should only be a PlacementFailedException
 	@Override
 	public void next() {
 		Coordinate input;
-
+		
 		try {
 			input = console.getSquareCoordinates(this);
 		} catch (InputInvalidException e) {
