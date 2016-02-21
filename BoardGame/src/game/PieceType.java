@@ -1,4 +1,4 @@
-package tictactoe;
+package game;
 public enum PieceType {
    X ('X'),
    O ('O');

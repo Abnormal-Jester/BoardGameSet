@@ -1,5 +1,7 @@
 package tictactoe;
 
+import game.PieceType;
+
 public class Team {
 
 	public enum TeamType {

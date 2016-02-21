@@ -1,7 +1,6 @@
 package game;
 
 import exception.PlacementFailedException;
-import tictactoe.PieceType;
 
 /**
  * This class creates a 2d array of squares and keeps track of the piece

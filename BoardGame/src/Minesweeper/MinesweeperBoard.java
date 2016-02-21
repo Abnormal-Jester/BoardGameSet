@@ -2,7 +2,7 @@ package Minesweeper;
 
 import game.CharBoard;
 import game.Coordinate;
-import tictactoe.PieceType;
+import game.PieceType;
 
 public class MinesweeperBoard extends CharBoard {
 

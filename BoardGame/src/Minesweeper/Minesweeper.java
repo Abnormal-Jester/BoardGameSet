@@ -1,6 +1,10 @@
 package Minesweeper;
 
+import exception.InputInvalidException;
+import exception.PlacementFailedException;
 import game.AbstractGame;
+import game.Coordinate;
+import game.PieceType;
 
 public class Minesweeper extends AbstractGame{
 
@@ -10,7 +14,24 @@ public class Minesweeper extends AbstractGame{
 
 	@Override
 	public void next() {
-		// TODO Auto-generated method stub
+		Coordinate input;
+		
+		try {
+			input = getConsole().getSquareCoordinates(this);
+		} catch (InputInvalidException e) {
+			errorMessage(e.toString());
+			return;
+		}
+		System.out.println();
+
+		try {
+			getBoard().attemptPlace(PieceType.X, input);
+		} catch (PlacementFailedException e) {
+			errorMessage(e.toString());
+			return;
+		}
+
+		printBoard();
 		
 	}
 

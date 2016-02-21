@@ -2,7 +2,7 @@ package othello;
 
 import game.CharBoard;
 import game.Coordinate;
-import tictactoe.PieceType;
+import game.PieceType;
 
 public class OthelloBoard extends CharBoard {
 	public OthelloBoard() {

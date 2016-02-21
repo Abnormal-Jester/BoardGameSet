@@ -4,10 +4,8 @@ import exception.InputInvalidException;
 import exception.PlacementFailedException;
 import game.AbstractGame;
 import game.Coordinate;
-import game.CustomScanner;
 
 public class TicTacToe extends AbstractGame {
-	private final static CustomScanner console = new CustomScanner();
 
 	private final Team[] team;
 	private int currentIndex;
@@ -28,7 +26,7 @@ public class TicTacToe extends AbstractGame {
 		Coordinate input;
 		
 		try {
-			input = console.getSquareCoordinates(this);
+			input = getConsole().getSquareCoordinates(this);
 		} catch (InputInvalidException e) {
 			errorMessage(e.toString());
 			return;

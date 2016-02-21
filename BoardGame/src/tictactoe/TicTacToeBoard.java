@@ -2,7 +2,7 @@ package tictactoe;
 
 import game.CharBoard;
 import game.Coordinate;
-import tictactoe.PieceType;
+import game.PieceType;
 
 /**
  * This class creates a 2d array of squares and keeps track of the piece
