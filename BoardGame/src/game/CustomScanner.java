@@ -112,24 +112,24 @@ public class CustomScanner {
 			// remove all blank spaces
 			temp = temp.replaceAll("\\s", "");
 
-			// accept letter number form: a2
-			if (temp.length() == 2) {
-				val[0] = temp.toUpperCase().charAt(0) - 65;
-				val[1] = Character.getNumericValue(temp.charAt(1)) - 1;
-			} else {
-				throw new InputInvalidException("Number of valid characters not 2: " + temp.length());
-			}
-
 		} catch (Exception e) {
 			System.out.println("Unexpected Error");
 			e.printStackTrace(System.out);
 			throw new InputInvalidException();
 		}
-		
+
+		// accept letter number form: a2
+		if (temp.length() == 2) {
+			val[0] = temp.toUpperCase().charAt(0) - 65;
+			val[1] = Character.getNumericValue(temp.charAt(1)) - 1;
+		} else {
+			throw new InputInvalidException("Number of valid characters should be 2. Actual: " + temp.length());
+		}
+
 		Coordinate out = new Coordinate(val[0], val[1]);
 
 		// reject all numbers out of bounds
-		if (game.getBoard().squareExists(out)) {
+		if (!game.getBoard().squareExists(out)) {
 			throw new InputInvalidException("No square on those coordinates exist: " + temp);
 		}
 
