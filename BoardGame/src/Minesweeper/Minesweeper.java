@@ -4,12 +4,11 @@ import exception.InputInvalidException;
 import exception.PlacementFailedException;
 import game.AbstractGame;
 import game.Coordinate;
-import game.PieceType;
 
 public class Minesweeper extends AbstractGame{
 
 	public Minesweeper() {
-		super(new MinesweeperBoard());
+		super(new MinesweeperBoard(5));
 	}
 
 	@Override
@@ -25,7 +24,7 @@ public class Minesweeper extends AbstractGame{
 		System.out.println();
 
 		try {
-			getBoard().attemptPlace(PieceType.X, input);
+			getBoard().attemptPlace(MinesweeperBoard.OPEN, input);
 		} catch (PlacementFailedException e) {
 			errorMessage(e.toString());
 			return;
