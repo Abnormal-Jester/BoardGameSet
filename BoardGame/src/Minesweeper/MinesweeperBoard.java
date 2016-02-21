@@ -112,6 +112,14 @@ public class MinesweeperBoard extends CharBoard {
 			return 1;
 		return 0;
 	}
+	
+	public int countAllBombs() {
+		int count = 0;
+		for (int j = 0; j < size; j++)
+			for (int i = 0; i < size; i++)
+				count += hasBomb(j, i);
+		return count;
+	}
 
 	/**
 	 * This method verifies that a square can be revealed. For Minesweeper, this
@@ -138,7 +146,7 @@ public class MinesweeperBoard extends CharBoard {
 	@Override
 	public char gameEnd() {
 		// The user had removed a bomb by revealing it
-		if (countBombs() != numOfBombs)
+		if (countAllBombs() != numOfBombs)
 			return BOMB.getChar();
 		// The user has not revealed every square
 		Coordinate c;
@@ -150,11 +158,6 @@ public class MinesweeperBoard extends CharBoard {
 			}
 		// The user has revealed every square
 		return OPEN.getChar();
-	}
-
-	public int countBombs() {
-		// TODO
-		return 0;
 	}
 	
 	/**
