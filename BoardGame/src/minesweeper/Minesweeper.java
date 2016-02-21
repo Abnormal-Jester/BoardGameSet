@@ -1,4 +1,4 @@
-package Minesweeper;
+package minesweeper;
 
 import exception.InputInvalidException;
 import exception.PlacementFailedException;

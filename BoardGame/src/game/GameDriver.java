@@ -1,6 +1,6 @@
 package game;
 
-import Minesweeper.Minesweeper;
+import minesweeper.Minesweeper;
 import othello.Othello;
 import tictactoe.TicTacToe;
 

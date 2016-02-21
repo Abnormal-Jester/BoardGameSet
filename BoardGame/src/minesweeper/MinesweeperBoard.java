@@ -1,4 +1,4 @@
-package Minesweeper;
+package minesweeper;
 
 import game.CharBoard;
 import game.Coordinate;
