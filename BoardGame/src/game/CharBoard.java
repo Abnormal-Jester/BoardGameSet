@@ -101,9 +101,9 @@ public abstract class CharBoard extends Board {
 
 		char letter = 'A';
 		for (int j = 0; j < board[0].length; j++) {
-			out += "" + letter++ + " " + board[0][j];
+			out += "" + letter++ + " " + board[j][0];
 			for (int i = 1; i < board.length; i++) {
-				out += "|" + board[i][j];
+				out += "|" + board[j][i];
 			}
 			if (j < board[0].length - 1) {
 				out += "\n  -";
