@@ -1,6 +1,4 @@
-package tictactoe;
-
-import game.PieceType;
+package game;
 
 public class Team {
 

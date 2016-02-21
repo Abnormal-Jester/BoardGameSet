@@ -3,7 +3,7 @@ package othello;
 import exception.PlacementFailedException;
 import game.AbstractGame;
 import game.Coordinate;
-import tictactoe.Team;
+import game.Team;
 
 public class Othello extends AbstractGame {
 	private final Team[] team;

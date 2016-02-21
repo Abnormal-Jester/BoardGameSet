@@ -4,6 +4,7 @@ import exception.InputInvalidException;
 import exception.PlacementFailedException;
 import game.AbstractGame;
 import game.Coordinate;
+import game.Team;
 
 public class TicTacToe extends AbstractGame {
 	/** This Team array contains both teams involved in Tic-Tac-Toe */
