@@ -67,7 +67,6 @@ public class MinesweeperBoard extends CharBoard {
 		for (int i = 0; i < 8; i++) {
 			c = new Coordinate(x + xOffset[i], y + yOffset[i]);
 			if (squareExists(c)) {
-				System.out.println(c.getX() + " " + c.getY());
 				bombs += hasBomb(c.getY(), c.getX());
 			}
 		}
@@ -132,6 +131,54 @@ public class MinesweeperBoard extends CharBoard {
 	public int countBombs() {
 		// TODO
 		return 0;
+	}
+	
+	/**
+	 * For every column, put a number. For every row, put a letter. Place the
+	 * number of surrounding squares on each square that is revealed.
+	 * 
+	 * @return a text created board with all the revealed number squares shown
+	 */
+	@Override
+	public String toString() {
+		char[][] tempBoard = getBoard();
+		
+		String out = " ";
+		for (int i = 0; i < tempBoard.length; i++)
+			out += " " + (i + 1);
+		out += "\n";
+
+		char letter = 'A';
+		for (int j = 0; j < tempBoard[0].length; j++) {
+			
+			out += "" + letter++ + " " + showVisibleBoard(j, 0);
+			
+			for (int i = 1; i < tempBoard.length; i++) {
+				
+				out += "|" + showVisibleBoard(j, i);
+				
+			}
+			if (j < tempBoard[0].length - 1) {
+				out += "\n  -";
+				for (int i = 1; i < tempBoard.length; i++)
+					out += "--";
+				out += "\n";
+			}
+		}
+		out += "\n";
+
+		return out;
+	}
+	
+	private char showVisibleBoard(int y, int x) {
+		if (getBoard()[y][x] == OPEN.getChar()) {
+			// if the value is 9, it is a bomb so show a bomb
+			if (visibleBoard[y][x] == 9) return BOMB.getChar();
+			// if the value is not 9, then show the value
+			return Integer.toString(visibleBoard[y][x]).charAt(0);
+		}
+		// otherwise, just show the piece (which should be ' ')
+		return getBoard()[y][x];
 	}
 
 }
