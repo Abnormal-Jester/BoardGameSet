@@ -40,7 +40,7 @@ public class MinesweeperBoard extends CharBoard {
 			}
 		}
 	}
-	
+
 	public int numOfSurroundingBombs(int y, int x) {
 		// TODO
 		return 0;
@@ -51,26 +51,25 @@ public class MinesweeperBoard extends CharBoard {
 	//
 	// (0, 1)
 	// (0, -1)
-	// 
+	//
 	// (-1, -1)
 	// (-1, 0)
 	// (-1, 1)
 
-
 	/**
-	 * This method verifies that a piece can be placed on this square. For
-	 * Minesweeper, this involves checking if the square had been reveled
-	 * before.
+	 * This method verifies that a square can be revealed. For Minesweeper, this
+	 * involves checking if the square had been reveled before.
 	 * 
 	 * @param piece
-	 *            the piece that will be checked
+	 *            the piece that will be checked. Only an OPEN PieceType should
+	 *            be given
 	 * @param c
-	 *            the coordinates the piece will be checked on
-	 * @return if the piece can be placed on the coordinate
+	 *            the coordinates that will be checked
+	 * @return if the square can be revealed
 	 */
 	@Override
 	public boolean canPlace(PieceType piece, Coordinate c) {
-		return isEmpty(c);
+		return getBoard()[c.getX()][c.getY()] != OPEN.getChar();
 	}
 
 	@Override
