@@ -7,15 +7,11 @@ import game.PieceType;
 /**
  * This class creates a 2d array of squares and keeps track of the piece
  * locations, win conditions, and text display.
- * 
- * @author Jarett Lee
  */
-public class TicTacToeBoard extends CharBoard{
+public class TicTacToeBoard extends CharBoard {
 
 	/**
-	 * This constructor takes the size of the board and Initializes the board.
-	 * 
-	 * @param size
+	 * This constructor initializes the board of a Tic-Tac-Toe game.
 	 */
 	public TicTacToeBoard() {
 		super(3);
@@ -34,10 +30,13 @@ public class TicTacToeBoard extends CharBoard{
 	@Override
 	public boolean canPlace(PieceType piece, Coordinate c) {
 		return isEmpty(c);
-	}	
+	}
 
-	/*
-	 * 2016-02-18 22:30 Added tie condition.
+	/**
+	 * This method checks if there are 3 pieces in a row and returns an exit
+	 * character if there are 3 pieces in a row. Otherwise, it checks if there
+	 * is an empty square. If there is an empty square, continue the game.
+	 * Otherwise, end the game as a tie.
 	 */
 	@Override
 	public char gameEnd() {
