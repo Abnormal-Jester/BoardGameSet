@@ -48,8 +48,8 @@ public class CustomScanner {
 			return x;
 		} catch (NumberFormatException e) {
 			errorMessage(e.toString());
+			throw new InputInvalidException();
 		}
-		return 0;
 	}
 
 	/**
@@ -65,24 +65,24 @@ public class CustomScanner {
 
 	/**
 	 * This method is an overloaded method that automatically sets the value of
-	 * escape to false.
+	 * escape to true.
 	 * 
 	 * @param low
 	 * @param high
 	 * @return
 	 */
 	public int getInt(int low, int high) {
-		return getInt(low, high, false);
+		return getInt(low, high, true);
 	}
 
 	/**
 	 * This method is an overloaded method that automatically sets the value of
-	 * low and high to the integer limits and escape to false.
+	 * low and high to the integer limits and escape to true.
 	 * 
 	 * @return
 	 */
 	public int getInt() {
-		return getInt(Integer.MIN_VALUE, Integer.MIN_VALUE, false);
+		return getInt(Integer.MIN_VALUE, Integer.MIN_VALUE, true);
 	}
 
 	/**
