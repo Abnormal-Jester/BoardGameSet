@@ -31,6 +31,21 @@ public class TicTacToeBoard extends CharBoard {
 	public boolean canPlace(PieceType piece, Coordinate c) {
 		return isEmpty(c);
 	}
+	
+	/**
+	 * This method has the AI determine its move and return the corresponding square the move is located on.
+	 * 
+	 * @return the ai will place a piece on this square
+	 */
+	private Coordinate getAIMove() {
+		// find winning lines
+		// count number of pieces in each line
+		// end one turn victories
+		// randomly place the piece
+		// lines 1-3 are columns, lines 4-6 are rows, lines 7 and 8 are diagonals
+
+		return new Coordinate(0, 0);
+	}
 
 	/**
 	 * This method checks if there are 3 pieces in a row and returns an exit

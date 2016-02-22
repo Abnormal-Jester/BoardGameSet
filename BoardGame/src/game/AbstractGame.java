@@ -12,7 +12,7 @@ public abstract class AbstractGame {
 	 */
 	private final static CustomScanner console = new CustomScanner();
 	/** board keeps track of where the pieces in the game are placed */
-	private final Board board;
+	private final CharBoard board;
 	/** play is a boolean value that determines if the game continues or ends */
 	private boolean play;
 
@@ -22,7 +22,7 @@ public abstract class AbstractGame {
 	 * @param board
 	 *            the board the game will be played on
 	 */
-	protected AbstractGame(Board board) {
+	protected AbstractGame(CharBoard board) {
 		this.board = board;
 		play = true;
 
@@ -80,7 +80,7 @@ public abstract class AbstractGame {
 	 * 
 	 * @return the board the game is being played on
 	 */
-	public Board getBoard() {
+	public CharBoard getBoard() {
 		return board;
 	}
 

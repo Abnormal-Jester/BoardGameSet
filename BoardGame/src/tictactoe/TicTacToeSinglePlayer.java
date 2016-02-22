@@ -83,7 +83,7 @@ public class TicTacToeSinglePlayer extends AbstractGame {
 		// end one turn victories
 		// randomly place the piece
 		// lines 1-3 are columns, lines 4-6 are rows, lines 7 and 8 are diagonals
-
+		
 		return new Coordinate(0, 0);
 	}
 
