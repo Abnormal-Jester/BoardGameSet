@@ -33,9 +33,9 @@ public class MinesweeperBoard extends CharBoard {
 		generateVisibleBoard();
 		
 		// debugging purposes
-		System.out.println(numOfBombs);
+		System.out.println();
 		System.out.println("Debugging:");
-		super.toString();
+		System.out.println(toStringCheat());
 	}
 	
 	public void randomlyPlaceBombs() {
@@ -195,6 +195,10 @@ public class MinesweeperBoard extends CharBoard {
 		out += "\n";
 
 		return out;
+	}
+	
+	private String toStringCheat() {
+		return super.toString();
 	}
 	
 	private char showVisibleBoard(int y, int x) {
