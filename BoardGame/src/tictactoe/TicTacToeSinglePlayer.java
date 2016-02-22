@@ -78,7 +78,12 @@ public class TicTacToeSinglePlayer extends AbstractGame {
 	 * @return the ai will place a piece on this square
 	 */
 	private Coordinate getAIMove() {
-		// TODO
+		// find winning lines
+		// count number of pieces in each line
+		// end one turn victories
+		// randomly place the piece
+		// lines 1-3 are columns, lines 4-6 are rows, lines 7 and 8 are diagonals
+
 		return new Coordinate(0, 0);
 	}
 
