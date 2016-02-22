@@ -123,11 +123,22 @@ public class CustomScanner {
 		return out;
 	}
 
+	/**
+	 * This method waits for the user to press enter. It also looks for escape
+	 * phrase "EXIT"
+	 */
 	public void pressToContinue() {
 		System.out.println("Press enter to continue");
 		checkEscape(console.nextLine());
 	}
 
+	/**
+	 * This method only checks for the escape phrase "EXIT" and exits from the
+	 * program if it is true.
+	 * 
+	 * @param temp
+	 *            the input string
+	 */
 	public static void checkEscape(String temp) {
 		// looks for "EXIT" and "RESET" before the squares
 		for (String str : temp.split("\\s")) {
@@ -141,10 +152,13 @@ public class CustomScanner {
 	}
 
 	/**
+	 * This method looks for escape phrases that exit the program and exit the
+	 * current game.
 	 * 
 	 * @param temp
 	 *            a String that will be checked for a key phrase.
 	 * @param game
+	 *            a game that will stop running if a key phrase is given.
 	 */
 	public static void checkEscape(String temp, AbstractGame game) {
 		// looks for "EXIT" and "RESET" before the squares
@@ -163,6 +177,13 @@ public class CustomScanner {
 		}
 	}
 
+	// TODO make it an error message to the player
+	/**
+	 * This method is for debugging purposes.
+	 * 
+	 * @param error
+	 *            the exception name or a custom message
+	 */
 	private void errorMessage(String error) {
 		System.out.println("Invalid: " + error);
 	}
