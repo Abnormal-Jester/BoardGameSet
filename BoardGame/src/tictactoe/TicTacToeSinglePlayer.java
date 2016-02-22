@@ -1,5 +1,7 @@
 package tictactoe;
 
+import java.util.ArrayList;
+
 import exception.InputInvalidException;
 import exception.PlacementFailedException;
 import game.AbstractGame;
@@ -73,7 +75,8 @@ public class TicTacToeSinglePlayer extends AbstractGame {
 	}
 
 	/**
-	 * This method has the AI determine its move and return the corresponding square the move is located on.
+	 * This method has the AI determine its move and return the corresponding
+	 * square the move is located on.
 	 * 
 	 * @return the ai will place a piece on this square
 	 */
@@ -82,9 +85,17 @@ public class TicTacToeSinglePlayer extends AbstractGame {
 		// count number of pieces in each line
 		// end one turn victories
 		// randomly place the piece
-		// lines 1-3 are columns, lines 4-6 are rows, lines 7 and 8 are diagonals
-		
-		return new Coordinate(0, 0);
+		// lines 1-3 are columns, lines 4-6 are rows, lines 7 and 8 are
+		// diagonals
+		char[][] tempBoard = getBoard().getBoard();
+		int size = tempBoard.length;
+		ArrayList<Coordinate> list = new ArrayList<Coordinate>(9);
+		for (int i = size * size - 1; i >= 0; i--) {
+			list.add(new Coordinate(i / size, i % size));
+		}
+		System.out.println(list);
+
+		return list.get((int) (Math.random() * list.size()));
 	}
 
 	/**
