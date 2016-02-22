@@ -1,6 +1,8 @@
 package tictactoe;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import exception.InputInvalidException;
 import exception.PlacementFailedException;
@@ -91,17 +93,52 @@ public class TicTacToeSinglePlayer extends AbstractGame {
 		CharBoard tempBoard = getBoard();
 		int size = tempBoard.getBoard().length;
 		ArrayList<Coordinate> list = new ArrayList<Coordinate>(9);
-		Coordinate c;
-		
+		Coordinate c = new Coordinate(0, 0);
+
+		// add all open squares to the ai's possible move list
 		for (int i = 0; i < size * size; i++) {
 			c = new Coordinate(i / size, i % size);
-			if(getBoard().isEmpty(c)) {
+			if (getBoard().isEmpty(c)) {
 				list.add(c);
+			}
+		}
+
+		int[] samePerRow = new int[8];
+
+		for (int n = 0; n < 3; n++) {
+			for (int m = 0; m < 3; m++) {
+				// check by row
+				c.setCoordinate(n, m);
+				samePerRow[n] += tempBoard.isEmpty(c) ? 0 : 1;
+
+				// check by column
+				c.setCoordinate(m, n);
+				samePerRow[n + 3] += tempBoard.isEmpty(c) ? 0 : 1;
+			}
+
+			// check by diagonal
+			c.setCoordinate(n, n);
+			samePerRow[6] += tempBoard.isEmpty(c) ? 0 : 1;
+			c.setCoordinate(2 - n, n);
+			samePerRow[7] += tempBoard.isEmpty(c) ? 0 : 1;
+		}
+
+		System.out.println(Arrays.toString(samePerRow));
+
+		Coordinate[] all = new Coordinate[9];
+		int[] weight = new int[9];
+		for (int i = 0; i < 9; i++) {
+			all[i] = new Coordinate(i / size, i % size);
+			if (getBoard().isEmpty(all[i])) {
+				weight[i] = 1;
+
 			}
 		}
 
 		return list.get((int) (Math.random() * list.size()));
 	}
+	// alternate way: make an initial list and store it, removing the coordinate
+	// that had a piece placed on it every time a piece is placed
 
 	/**
 	 * This method checks if the game should end. This method asks the board if
