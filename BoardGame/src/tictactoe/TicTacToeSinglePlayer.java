@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import exception.InputInvalidException;
 import exception.PlacementFailedException;
 import game.AbstractGame;
+import game.CharBoard;
 import game.Coordinate;
 import game.PieceType;
 
@@ -87,11 +88,16 @@ public class TicTacToeSinglePlayer extends AbstractGame {
 		// randomly place the piece
 		// lines 1-3 are columns, lines 4-6 are rows, lines 7 and 8 are
 		// diagonals
-		char[][] tempBoard = getBoard().getBoard();
-		int size = tempBoard.length;
+		CharBoard tempBoard = getBoard();
+		int size = tempBoard.getBoard().length;
 		ArrayList<Coordinate> list = new ArrayList<Coordinate>(9);
-		for (int i = size * size - 1; i >= 0; i--) {
-			list.add(new Coordinate(i / size, i % size));
+		Coordinate c;
+		
+		for (int i = 0; i < size * size; i++) {
+			c = new Coordinate(i / size, i % size);
+			if(getBoard().squareExists(c)) {
+				list.add(c);
+			}
 		}
 		System.out.println(list);
 
