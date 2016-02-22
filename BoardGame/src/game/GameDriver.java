@@ -21,7 +21,8 @@ public class GameDriver {
 				new TicTacToe().startGame();
 				break;
 			case 2:
-				new Minesweeper().startGame();
+				System.out.print("Enter a board size between 3 and 20: ");
+				new Minesweeper(console.getInt(3, 20)).startGame();
 				break;
 			case 3:
 				System.out.println("Not yet implemented");
