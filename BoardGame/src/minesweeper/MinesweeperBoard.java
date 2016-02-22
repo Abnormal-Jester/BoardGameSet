@@ -4,6 +4,11 @@ import game.CharBoard;
 import game.Coordinate;
 import game.PieceType;
 
+/**
+ * This board contains the minesweeper game board. It uses the character board
+ * to keep track of the of bombs and revealed squares and uses an int array to
+ * keep track of the number of bombs surrounding a square.
+ */
 public class MinesweeperBoard extends CharBoard {
 
 	/** This character represents a bomb */
@@ -21,9 +26,12 @@ public class MinesweeperBoard extends CharBoard {
 	/** This is the number of bombs that should be on the board */
 	private final int numOfBombs;
 
-	// The previous board tracks the revealed squares and the squares with bombs
-	// on them
-
+	/**
+	 * This constructs a character array for the bombs are revealed squares, an
+	 * integer array for the number of surrounding bombs around each square,
+	 * 
+	 * @param size
+	 */
 	public MinesweeperBoard(int size) {
 		super(size);
 		visibleBoard = new int[size][size];
@@ -31,27 +39,27 @@ public class MinesweeperBoard extends CharBoard {
 		numOfBombs = (size * size + 4) / 5;
 		randomlyPlaceBombs();
 		generateVisibleBoard();
-		
+
 		// debugging purposes
 		System.out.println();
 		System.out.println("Debugging:");
 		System.out.println(toStringCheat());
 	}
-	
+
+	/**
+	 * This method randomly places a bomb anywhere on the board.
+	 */
 	public void randomlyPlaceBombs() {
 		int x, y;
 		Coordinate c;
-		
-		for(int i = numOfBombs; i > 0; i--) {
-			x = (int)(Math.random() * size);
-			y = (int)(Math.random() * size);
-			c = new Coordinate (x, y);
-			while(!isEmpty(c)) {
-				x = (int)(Math.random() * size);
-				y = (int)(Math.random() * size);
-				
+
+		for (int i = numOfBombs; i > 0; i--) {
+			do {
+				x = (int) (Math.random() * size);
+				y = (int) (Math.random() * size);
+
 				c = new Coordinate(x, y);
-			}
+			} while (!isEmpty(c));
 			getBoard()[y][x] = BOMB.getChar();
 		}
 	}
@@ -99,7 +107,7 @@ public class MinesweeperBoard extends CharBoard {
 	}
 
 	/**
-	 * This method takes a coordinate and returns 1 if a bomb is on the square
+	 * This method takes a coordinate and returns 1 if a bomb is on the square.
 	 * 
 	 * @param y
 	 *            a y coordinate
@@ -111,14 +119,6 @@ public class MinesweeperBoard extends CharBoard {
 		if (getBoard()[y][x] == BOMB.getChar())
 			return 1;
 		return 0;
-	}
-	
-	public int countAllBombs() {
-		int count = 0;
-		for (int j = 0; j < size; j++)
-			for (int i = 0; i < size; i++)
-				count += hasBomb(j, i);
-		return count;
 	}
 
 	/**
@@ -159,7 +159,21 @@ public class MinesweeperBoard extends CharBoard {
 		// The user has revealed every square
 		return OPEN.getChar();
 	}
-	
+
+	/**
+	 * This method counts the current number of bombs on the square. It is used
+	 * the check of a bomb was shown.
+	 * 
+	 * @return the current number of bombs on the board.
+	 */
+	private int countAllBombs() {
+		int count = 0;
+		for (int j = 0; j < size; j++)
+			for (int i = 0; i < size; i++)
+				count += hasBomb(j, i);
+		return count;
+	}
+
 	/**
 	 * For every column, put a number. For every row, put a letter. Place the
 	 * number of surrounding squares on each square that is revealed.
@@ -169,7 +183,7 @@ public class MinesweeperBoard extends CharBoard {
 	@Override
 	public String toString() {
 		char[][] tempBoard = getBoard();
-		
+
 		String out = " ";
 		for (int i = 0; i < tempBoard.length; i++)
 			out += " " + (i + 1);
@@ -177,13 +191,13 @@ public class MinesweeperBoard extends CharBoard {
 
 		char letter = 'A';
 		for (int j = 0; j < tempBoard[0].length; j++) {
-			
-			out += "" + letter++ + " " + showVisibleBoard(j, 0);
-			
+
+			out += "" + letter++ + " " + showOpenSquares(j, 0);
+
 			for (int i = 1; i < tempBoard.length; i++) {
-				
-				out += "|" + showVisibleBoard(j, i);
-				
+
+				out += "|" + showOpenSquares(j, i);
+
 			}
 			if (j < tempBoard[0].length - 1) {
 				out += "\n  -";
@@ -196,15 +210,24 @@ public class MinesweeperBoard extends CharBoard {
 
 		return out;
 	}
-	
+
 	private String toStringCheat() {
 		return super.toString();
 	}
-	
-	private char showVisibleBoard(int y, int x) {
+
+	/**
+	 * If the square is revealed, then show the integer array at the visible
+	 * board.
+	 * 
+	 * @param y
+	 * @param x
+	 * @return
+	 */
+	private char showOpenSquares(int y, int x) {
 		if (getBoard()[y][x] == OPEN.getChar()) {
 			// if the value is 9, it is a bomb so show a bomb
-			if (visibleBoard[y][x] == 9) return BOMB.getChar();
+			if (visibleBoard[y][x] == 9)
+				return BOMB.getChar();
 			// if the value is not 9, then show the value
 			return Integer.toString(visibleBoard[y][x]).charAt(0);
 		}
