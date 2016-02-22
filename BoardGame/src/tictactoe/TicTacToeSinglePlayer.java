@@ -95,11 +95,10 @@ public class TicTacToeSinglePlayer extends AbstractGame {
 		
 		for (int i = 0; i < size * size; i++) {
 			c = new Coordinate(i / size, i % size);
-			if(getBoard().squareExists(c)) {
+			if(getBoard().isEmpty(c)) {
 				list.add(c);
 			}
 		}
-		System.out.println(list);
 
 		return list.get((int) (Math.random() * list.size()));
 	}
