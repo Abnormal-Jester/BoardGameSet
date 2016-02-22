@@ -3,6 +3,7 @@ package game;
 import minesweeper.Minesweeper;
 import othello.Othello;
 import tictactoe.TicTacToe;
+import tictactoe.TicTacToeSinglePlayer;
 
 /**
  * This class runs the games that are in this game pack.
@@ -21,7 +22,23 @@ public class GameDriver {
 
 			switch (selection) {
 			case 1:
-				new TicTacToe().startGame();
+				System.out.println("1. Play against another human\n" + "2. Play against the AI as X\n"
+						+ "3. Play agaist the AI as O");
+				selection = console.getInt(1, 3);
+				switch (selection) {
+				case 1:
+					new TicTacToe().startGame();
+					break;
+				case 2:
+					new TicTacToeSinglePlayer(PieceType.X).startGame();
+					break;
+				case 3:
+					new TicTacToeSinglePlayer(PieceType.O).startGame();
+					break;
+				default:
+					System.out.println("No Tic Tac Toe game started.");
+					break;
+				}
 				break;
 			case 2:
 				System.out.print("Enter a board size between 3 and 20: ");
