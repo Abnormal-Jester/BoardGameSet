@@ -46,8 +46,7 @@ public abstract class CharBoard extends Board {
 		if (canPlace(piece, c)) {
 			place(piece, c);
 		} else {
-			throw new PlacementFailedException(
-					"The piece cannot be placed on square \"" + c.toAlphaNumerical() + '\"');
+			throw new PlacementFailedException("The piece cannot be placed on square \"" + c.toAlphaNumerical() + '\"');
 		}
 	}
 
@@ -117,10 +116,19 @@ public abstract class CharBoard extends Board {
 		return out;
 	}
 
+	/**
+	 * This method detects if the game has ended and returns a notification a
+	 * character that corresponds to the state of the game.
+	 */
 	public abstract char gameEnd();
 
+	/**
+	 * This method detects if the square at a coordinate exists.
+	 * 
+	 * @return if the square exists
+	 */
 	public boolean squareExists(Coordinate out) {
-		return out.getX() >= 0 && out.getX() < board.length && out.getY() >= 0 && out.getY() < board[0].length;
+		return out.getX() >= 0 && out.getX() < board[0].length && out.getY() >= 0 && out.getY() < board.length;
 	}
 
 	/**
