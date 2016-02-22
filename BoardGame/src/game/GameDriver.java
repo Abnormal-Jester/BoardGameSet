@@ -48,7 +48,10 @@ public class GameDriver {
 	 * then give the instructions of the game to the user.
 	 */
 	public static void displayHelp() {
-		System.out.println("Not yet implemented");
+		System.out.println("\n Using the phrase \"Exit\" will completely close the program at any time.\n"
+				+ " When a game is active, using the phrase \"Back\" or \"Menu\" will take you back to the main menu\n"
+				+ " When indicating a square, the only accepted format is single letter then single number \"a1\".\n"
+				+ " I hope you have fun.\n");
 	}
 
 }
