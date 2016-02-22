@@ -1,7 +1,13 @@
 package game;
 
+/**
+ * This class represents different teams
+ */
 public class Team {
 
+	/**
+	 * This enum are preset team types
+	 */
 	public enum TeamType {
 		X(PieceType.X), O(PieceType.O);
 

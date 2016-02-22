@@ -4,6 +4,9 @@ import minesweeper.Minesweeper;
 import othello.Othello;
 import tictactoe.TicTacToe;
 
+/**
+ * This class runs the games that are in this game pack.
+ */
 public class GameDriver {
 
 	public static void main(String[] args) {
@@ -42,11 +45,9 @@ public class GameDriver {
 		}
 	}
 
-	// TODO
-	// May eventually be moved inside of the game classes
 	/**
-	 * This method will eventually ask which game the user wants help with and
-	 * then give the instructions of the game to the user.
+	 * This method gives basic, general instructions about the key phrases the
+	 * user can use and how the user can input square coordinates.
 	 */
 	public static void displayHelp() {
 		System.out.println("\n Using the phrase \"Exit\" will completely close the program at any time.\n"

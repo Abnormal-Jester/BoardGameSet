@@ -1,5 +1,6 @@
 package game;
 
+// Currently not in use, all methods redefined in CharBoard
 public abstract class Board {
 	public abstract void initializeBoard();
 	public abstract void attemptPlace(PieceType piece, Coordinate c);

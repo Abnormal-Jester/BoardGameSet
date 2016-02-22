@@ -4,7 +4,6 @@ import game.CustomScanner;
 
 /**
  * This class contains the board of the game and the game loop method.
- *
  */
 public abstract class AbstractGame {
 	/**

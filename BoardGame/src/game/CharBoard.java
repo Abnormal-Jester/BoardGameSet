@@ -5,8 +5,6 @@ import exception.PlacementFailedException;
 /**
  * This class creates a 2d array of squares and keeps track of the piece
  * locations, win conditions, and text display.
- * 
- * @author Jarett Lee
  */
 public abstract class CharBoard extends Board {
 	/**

@@ -4,9 +4,16 @@ import java.util.Scanner;
 
 import exception.InputInvalidException;
 
+/**
+ * This class reads the user's input in the context of a game.
+ */
 public class CustomScanner {
+	/** This is the scanner that reads the user's input */
 	private final Scanner console;
 
+	/**
+	 * This constructs the scanner that reads the user's input.
+	 */
 	public CustomScanner() {
 		console = new Scanner(System.in);
 	}
@@ -84,7 +91,7 @@ public class CustomScanner {
 	 * method turns it into a coordinate.
 	 * 
 	 * @param game
-	 * @return
+	 * @return the coordinate that corresponds to the user's input
 	 */
 	public Coordinate getSquareCoordinates(AbstractGame game) {
 		String temp;
@@ -124,8 +131,8 @@ public class CustomScanner {
 	}
 
 	/**
-	 * This method waits for the user to press enter. It also looks for escape
-	 * phrase "EXIT"
+	 * This method waits for the user to press enter. It also looks for an
+	 * escape phrase.
 	 */
 	public void pressToContinue() {
 		System.out.println("Press enter to continue");
