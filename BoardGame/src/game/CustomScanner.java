@@ -78,19 +78,6 @@ public class CustomScanner {
 		return getInt(Integer.MIN_VALUE, Integer.MIN_VALUE, false);
 	}
 
-	/*
-	 * 2016-02-18 19:21 Moved to CustomScanner in order to keep the TicTacToe
-	 * class cleaner. Found the String trim() method
-	 * 
-	 * 2016-02-18 17:25 I initially only used split() and did not use
-	 * replaceAll(). I changed to the using replaceAll() because it allows to
-	 * disregard any blank space that the user might input and only focus on the
-	 * length of the user's input (should be 2, [character, number]) and the
-	 * values of the input, although that is not validated here. I no longer
-	 * check the length of each split input and the length of the input array. I
-	 * found this optimization when I put a space in front of input before my a2
-	 * (" a2") and it returned an unexpected error.
-	 */
 	/**
 	 * This method gives a game a valid coordinate that corresponds to a square
 	 * on the board. The user inputs an alphanumeric character string and this
