@@ -24,6 +24,7 @@ public class GameDriver {
 			case 1:
 				System.out.println("1. Play against another human\n" + "2. Play against the AI as X\n"
 						+ "3. Play agaist the AI as O");
+				System.out.print("Please enter the number of the game mode you want to play: ");
 				selection = console.getInt(1, 3);
 				switch (selection) {
 				case 1:
