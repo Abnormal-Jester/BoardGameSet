@@ -211,17 +211,23 @@ public class MinesweeperBoard extends CharBoard {
 		return out;
 	}
 
+	/**
+	 * This method shows a board with all the bombs visible
+	 * 
+	 * @return The board with the bombs visible
+	 */
 	private String toStringCheat() {
 		return super.toString();
 	}
 
 	/**
-	 * If the square is revealed, then show the integer array at the visible
-	 * board.
+	 * This method shows the int array if the square is revealed.
 	 * 
 	 * @param y
+	 *            the y coordinate
 	 * @param x
-	 * @return
+	 *            the x coordinate
+	 * @return the square the user can see
 	 */
 	private char showOpenSquares(int y, int x) {
 		if (getBoard()[y][x] == OPEN.getChar()) {
