@@ -7,8 +7,8 @@ import game.Coordinate;
 
 public class Minesweeper extends AbstractGame {
 
-	public Minesweeper() {
-		super(new MinesweeperBoard(2));
+	public Minesweeper(int size) {
+		super(new MinesweeperBoard(size));
 	}
 
 	@Override
