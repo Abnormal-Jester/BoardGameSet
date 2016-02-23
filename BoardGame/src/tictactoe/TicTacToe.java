@@ -4,14 +4,14 @@ import exception.InputInvalidException;
 import exception.PlacementFailedException;
 import game.AbstractGame;
 import game.Coordinate;
-import game.Team;
+import game.PieceType;
 
 /**
  * This class runs a Tic-Tac-Toe game.
  */
 public class TicTacToe extends AbstractGame {
 	/** This Team array contains both teams involved in Tic-Tac-Toe */
-	private static final Team[] team = new Team[] { new Team(Team.TeamType.X), new Team(Team.TeamType.O) };
+	private static final PieceType[] piece = { PieceType.X, PieceType.O };
 
 	/** This integer keeps track of the current team's turn. */
 	private int currentIndex;
@@ -44,7 +44,7 @@ public class TicTacToe extends AbstractGame {
 		System.out.println();
 
 		try {
-			getBoard().attemptPlace(team[currentIndex].getPieceType(), input);
+			getBoard().attemptPlace(piece[currentIndex], input);
 		} catch (PlacementFailedException e) {
 			errorMessage(e.toString());
 			return;
