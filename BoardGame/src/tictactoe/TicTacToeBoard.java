@@ -17,6 +17,27 @@ public class TicTacToeBoard extends CharBoard {
 		super(3);
 	}
 
+	// TODO make this copy constructor more robust.
+	/**
+	 * This constructor is a copy constructor, but it fails if the CharBoard
+	 * that the constructor accepts does not have the same size as a tic tac toe
+	 * board.
+	 * 
+	 * @param board
+	 */
+	public TicTacToeBoard(CharBoard board) {
+		super(3);
+
+		if (board.getBoard().length == 3 && board.getBoard()[0].length == 3) {
+			for (int j = 0; j < getBoard().length; j++) {
+				for (int i = 0; i < getBoard()[j].length; i++) {
+					getBoard()[j][i] = board.getBoard()[j][i];
+				}
+			}
+		}
+
+	}
+
 	/**
 	 * This method verifies that a piece can be placed on this square. For
 	 * TicTacToe, this only involves checking if the coordinate is empty.
