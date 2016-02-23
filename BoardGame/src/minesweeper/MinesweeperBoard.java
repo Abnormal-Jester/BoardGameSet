@@ -185,8 +185,8 @@ public class MinesweeperBoard extends CharBoard {
 		char[][] tempBoard = getBoard();
 
 		String out = " ";
-		for (int i = 0; i < tempBoard.length; i++)
-			out += " " + (i + 1);
+		for (int i = 1; i <= tempBoard.length; i++)
+			out += " " + (i % 10 == 0 ? i / 10 : i % 10);
 		out += "\n";
 
 		char letter = 'A';

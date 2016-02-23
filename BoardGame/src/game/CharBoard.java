@@ -92,8 +92,8 @@ public abstract class CharBoard {
 	 */
 	public String toString() {
 		String out = " ";
-		for (int i = 0; i < board.length; i++)
-			out += " " + (i + 1);
+		for (int i = 1; i <= board.length; i++)
+			out += " " + (i % 10 == 0 ? i / 10 : i % 10);
 		out += "\n";
 
 		char letter = 'A';
