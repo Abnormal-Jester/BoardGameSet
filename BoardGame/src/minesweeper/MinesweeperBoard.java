@@ -50,18 +50,26 @@ public class MinesweeperBoard extends CharBoard {
 	 * This method randomly places a bomb anywhere on the board.
 	 */
 	public void randomlyPlaceBombs() {
-		int x, y;
 		Coordinate c;
 
 		for (int i = numOfBombs; i > 0; i--) {
-			do {
-				x = (int) (Math.random() * size);
-				y = (int) (Math.random() * size);
-
-				c = new Coordinate(x, y);
-			} while (!isEmpty(c));
-			getCharBoard()[y][x] = BOMB.getChar();
+			c = emptyRandomCoordinate();
+			place(BOMB, c);
 		}
+	}
+	
+	private Coordinate emptyRandomCoordinate() {
+		Coordinate c;
+		do {
+			c = randomCoordinate();
+		} while (!isEmpty(c));
+		return c;
+	}
+
+	private Coordinate randomCoordinate() {
+		int x = (int) (Math.random() * size);
+		int y = (int) (Math.random() * size);
+		return new Coordinate(x, y);
 	}
 
 	/**
@@ -173,16 +181,6 @@ public class MinesweeperBoard extends CharBoard {
 				count += hasBomb(j, i);
 		return count;
 	}
-
-	/**
-	 * For every column, put a number. For every row, put a letter. Place the
-	 * number of surrounding squares on each square that is revealed.
-	 * 
-	 * @return a text created board with all the revealed number squares shown
-	 */
-//	@Override
-//	public String toString() {
-	
 	
 	@Override
 	protected String printRow(int row) {
@@ -199,7 +197,17 @@ public class MinesweeperBoard extends CharBoard {
 	 * @return The board with the bombs visible
 	 */
 	private String toStringCheat() {
-		return super.toString();
+		String out = "";
+		for (int j = 0; j < size; j++) {
+			out += printRowLabel(j) + " ";
+			out += printCheatRow(j) + "\n";
+			out += printRowDivider(!isBottomRow(j)) + "\n";
+		}
+		return out;
+	}
+	
+	protected String printCheatRow(int j) {
+		return super.printRow(j);
 	}
 
 	/**
