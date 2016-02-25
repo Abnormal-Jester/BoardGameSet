@@ -1,13 +1,12 @@
 package tictactoe;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 
 import exception.InputInvalidException;
 import exception.PlacementFailedException;
 import game.AbstractGame;
-import game.CharBoard;
+//import game.CharBoard;
 import game.Coordinate;
 import game.PieceType;
 
@@ -42,6 +41,8 @@ public class TicTacToeSinglePlayer extends AbstractGame {
 		pieces[1] = playerPiece == PieceType.X ? PieceType.O : PieceType.X;
 
 		currentIndex = playerPiece == PieceType.X ? 0 : 1;
+		
+		System.out.println("The AI is completely random.");
 	}
 
 	/**
@@ -84,61 +85,59 @@ public class TicTacToeSinglePlayer extends AbstractGame {
 	 * @return the ai will place a piece on this square
 	 */
 	private Coordinate getAIMove() {
-		// find winning lines
-		// count number of pieces in each line
-		// end one turn victories
-		// randomly place the piece
-		// lines 1-3 are columns, lines 4-6 are rows, lines 7 and 8 are
-		// diagonals
-		CharBoard tempBoard = getBoard();
-		int size = tempBoard.getBoard().length;
-		ArrayList<Coordinate> list = new ArrayList<Coordinate>(9);
-		Coordinate c = new Coordinate(0, 0);
-
-		// add all open squares to the ai's possible move list
-		for (int i = 0; i < size * size; i++) {
-			c = new Coordinate(i / size, i % size);
-			if (getBoard().isEmpty(c)) {
-				list.add(c);
-			}
-		}
-
-		int[] samePerRow = new int[8];
-
-		for (int n = 0; n < 3; n++) {
-			for (int m = 0; m < 3; m++) {
-				// check by row
-				c.setCoordinate(n, m);
-				samePerRow[n] += tempBoard.isEmpty(c) ? 0 : 1;
-
-				// check by column
-				c.setCoordinate(m, n);
-				samePerRow[n + 3] += tempBoard.isEmpty(c) ? 0 : 1;
-			}
-
-			// check by diagonal
-			c.setCoordinate(n, n);
-			samePerRow[6] += tempBoard.isEmpty(c) ? 0 : 1;
-			c.setCoordinate(2 - n, n);
-			samePerRow[7] += tempBoard.isEmpty(c) ? 0 : 1;
-		}
-
-		System.out.println(Arrays.toString(samePerRow));
-
-		Coordinate[] all = new Coordinate[9];
-		int[] weight = new int[9];
-		for (int i = 0; i < 9; i++) {
-			all[i] = new Coordinate(i / size, i % size);
-			if (getBoard().isEmpty(all[i])) {
-				weight[i] = 1;
-
-			}
-		}
+		ArrayList<Coordinate> list = getPossibleMoves();
 
 		return list.get((int) (Math.random() * list.size()));
 	}
 	// alternate way: make an initial list and store it, removing the coordinate
 	// that had a piece placed on it every time a piece is placed
+	
+	private ArrayList<Coordinate> getPossibleMoves() {
+		ArrayList<Coordinate> list = new ArrayList<Coordinate>(9);
+		Coordinate c = new Coordinate(0, 0);
+
+		// add all open squares to the ai's possible move list
+		for (int i = 0; i < 9; i++) {
+			c = new Coordinate(i / 3, i % 3);
+			if (getBoard().isEmpty(c)) {
+				list.add(c);
+			}
+		}
+		return list;
+	}
+
+//	private int minimax(CharBoard board, int depth, int m) {
+//		if (board.gameEnd() != ' ')
+//			return score(board, depth);
+//		
+//		depth++;
+//		m = m == HU ? AI : HU;
+//		ArrayList<Integer> scores = new ArrayList<Integer>(9);
+//		ArrayList<Coordinate> moves = new ArrayList<Coordinate>(9);
+//		int maxIndex = 0;
+//		
+//		for(Coordinate c : getPossibleMoves()) {
+//			board.place(pieces[m], c);
+//			scores.add(minimax(board, depth, m));
+//			moves.add(c);
+//		}
+//		
+//		if(currentIndex == HU) {
+//			return scores.get(maxIndex);
+//		}
+//		
+//
+//		return depth;
+//	}
+//
+//	private int score(CharBoard board, int depth) {
+//		if (board.gameEnd() == 'X')
+//			return 10 - depth;
+//		else if (board.gameEnd() == 'O')
+//			return depth - 10;
+//		else
+//			return 0;
+//	}
 
 	/**
 	 * This method checks if the game should end. This method asks the board if
