@@ -92,28 +92,59 @@ public abstract class CharBoard {
 	 */
 	public String toString() {
 		String out = " ";
-		for (int i = 1; i <= board.length; i++)
-			out += " " + (i % 10 == 0 ? i / 10 : i % 10);
+		out += labelEachColumn();
 		out += "\n";
-
-		char letter = 'A';
-		for (int j = 0; j < board[0].length; j++) {
-			out += "" + letter++ + " " + board[j][0];
-			for (int i = 1; i < board.length; i++) {
-				out += "|" + board[j][i];
-			}
-			if (j < board[0].length - 1) {
-				out += "\n  -";
-				for (int i = 1; i < board.length; i++)
-					out += "--";
-				out += "\n";
-			}
-		}
+		out += printAllRows();
 		out += "\n";
 
 		return out;
 	}
+	
+	private String labelEachColumn() {
+		String out = "";
+		for (int i = 1; i <= board.length; i++)
+			out += " " + (i % 10 == 0 ? i / 10 : i % 10);
+		return out;
+	}
+	
+	private String printAllRows() {
+		String out = "";
+		for (int j = 0; j < board[0].length; j++) {
+			out += printRowLabel(j) + " ";
+			out += printBoardRow(j) + "\n";
+			out += printRowDivider(!isBottomRow(j)) + "\n";
+		}
+		return out;
+	}
 
+	private String printRowLabel(int row) {
+		return "" + (char)('A'+row);
+	}
+	
+	private String printBoardRow(int j) {
+		String out = "" + board[j][0].getChar();
+		for (int i = 1; i < board.length; i++) {
+			out += "|" + board[j][i].getChar();
+		}
+		return out;
+	}
+	
+	private String printRowDivider(boolean shouldPrint) {
+		if(shouldPrint) {
+			String out = "  -";
+			for (int i = 1; i < board.length; i++)
+				out += "--";
+			return out;
+		}
+		else {
+			return "";
+		}
+	}
+
+	private boolean isBottomRow(int row) {
+		return board.length -1 == row;
+	}
+	
 	/**
 	 * This method detects if the game has ended and returns a notification a
 	 * character that corresponds to the state of the game.
