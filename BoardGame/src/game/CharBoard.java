@@ -31,7 +31,7 @@ public abstract class CharBoard {
 	public void initializeBoard() {
 		for (int j = 0; j < board.length; j++)
 			for (int i = 0; i < board[j].length; i++)
-				board[j][i].setChar(' ');
+				board[j][i] = new Square(' ');
 	}
 
 	/**
