@@ -41,15 +41,15 @@ public class CustomScanner {
 			if (escape == true)
 				checkEscape(temp);
 			x = Integer.parseInt(temp);
-
-			if (x < low || x > high)
-				return 0;
-
-			return x;
 		} catch (NumberFormatException e) {
 			errorMessage(e.toString());
 			throw new InputInvalidException();
 		}
+		
+		if (x < low || x > high)
+			throw new InputInvalidException();
+
+		return x;
 	}
 
 	/**
