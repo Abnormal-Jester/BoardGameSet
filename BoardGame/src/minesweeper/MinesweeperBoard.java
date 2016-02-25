@@ -180,34 +180,16 @@ public class MinesweeperBoard extends CharBoard {
 	 * 
 	 * @return a text created board with all the revealed number squares shown
 	 */
+//	@Override
+//	public String toString() {
+	
+	
 	@Override
-	public String toString() {
-		char[][] tempBoard = getCharBoard();
-
-		String out = " ";
-		for (int i = 1; i <= tempBoard.length; i++)
-			out += " " + (i % 10 == 0 ? i / 10 : i % 10);
-		out += "\n";
-
-		char letter = 'A';
-		for (int j = 0; j < tempBoard[0].length; j++) {
-
-			out += "" + letter++ + " " + showOpenSquares(j, 0);
-
-			for (int i = 1; i < tempBoard.length; i++) {
-
-				out += "|" + showOpenSquares(j, i);
-
-			}
-			if (j < tempBoard[0].length - 1) {
-				out += "\n  -";
-				for (int i = 1; i < tempBoard.length; i++)
-					out += "--";
-				out += "\n";
-			}
+	protected String printRow(int row) {
+		String out = "" + showOpenSquares(row, 0);
+		for (int i = 1; i < getCharBoard().length; i++) {
+			out += "|" + showOpenSquares(row, i);
 		}
-		out += "\n";
-
 		return out;
 	}
 
