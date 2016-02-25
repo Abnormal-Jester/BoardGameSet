@@ -197,17 +197,21 @@ public class MinesweeperBoard extends CharBoard {
 	 * @return The board with the bombs visible
 	 */
 	private String toStringCheat() {
-		String out = "";
-		for (int j = 0; j < size; j++) {
-			out += printRowLabel(j) + " ";
-			out += printCheatRow(j) + "\n";
-			out += printRowDivider(!isBottomRow(j)) + "\n";
-		}
+		String out = " ";
+		out += labelEachColumn() + "\n";
+		out += printAllRowsCheat() + "\n";
+
 		return out;
 	}
 	
-	protected String printCheatRow(int j) {
-		return super.printRow(j);
+	protected String printAllRowsCheat() {
+		String out = "";
+		for (int j = 0; j < size; j++) {
+			out += printRowLabel(j) + " ";
+			out += super.printRow(j) + "\n";
+			out += printRowDivider(!isBottomRow(j)) + "\n";
+		}
+		return out;
 	}
 
 	/**
