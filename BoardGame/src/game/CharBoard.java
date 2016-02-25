@@ -114,7 +114,7 @@ public abstract class CharBoard {
 		String out = "";
 		for (int j = 0; j < board[0].length; j++) {
 			out += printRowLabel(j) + " ";
-			out += printBoardRow(j) + "\n";
+			out += printRow(j) + "\n";
 			out += printRowDivider(!isBottomRow(j)) + "\n";
 		}
 		return out;
@@ -124,7 +124,7 @@ public abstract class CharBoard {
 		return "" + (char)('A'+row);
 	}
 	
-	protected String printBoardRow(int j) {
+	protected String printRow(int j) {
 		String out = "" + board[j][0].getChar();
 		for (int i = 1; i < board.length; i++) {
 			out += "|" + board[j][i].getChar();
