@@ -92,22 +92,25 @@ public abstract class CharBoard {
 	 */
 	public String toString() {
 		String out = " ";
-		out += labelEachColumn();
-		out += "\n";
-		out += printAllRows();
-		out += "\n";
+		out += labelEachColumn() + "\n";
+		out += printAllRows() + "\n";
 
 		return out;
 	}
 	
-	private String labelEachColumn() {
+	protected String labelEachColumn() {
 		String out = "";
 		for (int i = 1; i <= board.length; i++)
-			out += " " + (i % 10 == 0 ? i / 10 : i % 10);
+			out += " " + labelColumn(i);
+		
 		return out;
 	}
 	
-	private String printAllRows() {
+	protected String labelColumn(int i) {
+		return "" + (i % 10 == 0 ? i / 10 : i % 10);
+	}
+
+	protected String printAllRows() {
 		String out = "";
 		for (int j = 0; j < board[0].length; j++) {
 			out += printRowLabel(j) + " ";
@@ -117,11 +120,11 @@ public abstract class CharBoard {
 		return out;
 	}
 
-	private String printRowLabel(int row) {
+	protected String printRowLabel(int row) {
 		return "" + (char)('A'+row);
 	}
 	
-	private String printBoardRow(int j) {
+	protected String printBoardRow(int j) {
 		String out = "" + board[j][0].getChar();
 		for (int i = 1; i < board.length; i++) {
 			out += "|" + board[j][i].getChar();
@@ -129,7 +132,7 @@ public abstract class CharBoard {
 		return out;
 	}
 	
-	private String printRowDivider(boolean shouldPrint) {
+	protected String printRowDivider(boolean shouldPrint) {
 		if(shouldPrint) {
 			String out = "  -";
 			for (int i = 1; i < board.length; i++)
@@ -141,7 +144,7 @@ public abstract class CharBoard {
 		}
 	}
 
-	private boolean isBottomRow(int row) {
+	protected boolean isBottomRow(int row) {
 		return board.length -1 == row;
 	}
 	
