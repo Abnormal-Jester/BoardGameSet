@@ -20,13 +20,13 @@ public class GameDriver {
 			System.out.print("Please enter the number of the game you want " + "to play: ");
 
 			try {
-				selection = console.getInt(1, 5);
+				selection = console.getBoundInt(1, 5);
 				switch (selection) {
 				case 1:
 					System.out.println("1. Play against another human\n" + "2. Play against the AI as X\n"
 							+ "3. Play agaist the AI as O");
 					System.out.print("Please enter the number of the game mode you want to play: ");
-					selection = console.getInt(1, 3);
+					selection = console.getBoundInt(1, 3);
 					switch (selection) {
 					case 1:
 						new TicTacToe().startGame();
@@ -44,7 +44,7 @@ public class GameDriver {
 					break;
 				case 2:
 					System.out.print("Enter a board size between 3 and 20: ");
-					new Minesweeper(console.getInt(3, 20)).startGame();
+					new Minesweeper(console.getBoundInt(3, 20)).startGame();
 					break;
 				case 3:
 					System.out.println("Not yet implemented");

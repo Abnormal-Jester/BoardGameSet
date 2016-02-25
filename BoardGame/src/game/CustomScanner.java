@@ -33,7 +33,16 @@ public class CustomScanner {
 	 *         than or equal to the high parameter. Otherwise, if the escape is
 	 *         true and the program finds an escape phrase, the program exits.
 	 */
-	public int getInt(int low, int high, boolean escape) {
+	public int getBoundInt(int low, int high, boolean escape) {
+		int x = getInt(escape);
+		
+		if (x < low || x > high)
+			throw new InputInvalidException();
+
+		return x;
+	}
+	
+	private int getInt(boolean escape) {
 		String temp;
 		int x;
 		try {
@@ -45,10 +54,6 @@ public class CustomScanner {
 			errorMessage(e.toString());
 			throw new InputInvalidException();
 		}
-		
-		if (x < low || x > high)
-			throw new InputInvalidException();
-
 		return x;
 	}
 
@@ -59,8 +64,8 @@ public class CustomScanner {
 	 * @param escape
 	 * @return
 	 */
-	public int getInt(boolean escape) {
-		return getInt(Integer.MIN_VALUE, Integer.MAX_VALUE, escape);
+	public int getBoundInt(boolean escape) {
+		return getBoundInt(Integer.MIN_VALUE, Integer.MAX_VALUE, escape);
 	}
 
 	/**
@@ -71,8 +76,8 @@ public class CustomScanner {
 	 * @param high
 	 * @return
 	 */
-	public int getInt(int low, int high) {
-		return getInt(low, high, true);
+	public int getBoundInt(int low, int high) {
+		return getBoundInt(low, high, true);
 	}
 
 	/**
@@ -81,8 +86,8 @@ public class CustomScanner {
 	 * 
 	 * @return
 	 */
-	public int getInt() {
-		return getInt(Integer.MIN_VALUE, Integer.MIN_VALUE, true);
+	public int getBoundInt() {
+		return getBoundInt(Integer.MIN_VALUE, Integer.MIN_VALUE, true);
 	}
 
 	/**
