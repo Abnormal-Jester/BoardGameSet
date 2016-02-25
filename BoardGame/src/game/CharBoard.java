@@ -10,7 +10,7 @@ public abstract class CharBoard {
 	/**
 	 * board a 2d array of characters that keep track of the pieces on the board
 	 */
-	private char[][] board;
+	private Square[][] board;
 
 	/**
 	 * This constructor takes the size of the board and Initializes the board.
@@ -18,7 +18,7 @@ public abstract class CharBoard {
 	 * @param size
 	 */
 	public CharBoard(int size) {
-		board = new char[size][size];
+		board = new Square[size][size];
 
 		initializeBoard();
 	}
@@ -31,7 +31,7 @@ public abstract class CharBoard {
 	public void initializeBoard() {
 		for (int j = 0; j < board.length; j++)
 			for (int i = 0; i < board[j].length; i++)
-				board[j][i] = ' ';
+				board[j][i].setChar(' ');
 	}
 
 	/**
@@ -58,7 +58,7 @@ public abstract class CharBoard {
 	 *            the coordinates of the square the piece will be placed on
 	 */
 	public void place(PieceType piece, Coordinate c) {
-		board[c.getX()][c.getY()] = piece.getChar();
+		board[c.getX()][c.getY()].setChar(piece.getChar());
 	}
 
 	/**
@@ -80,7 +80,7 @@ public abstract class CharBoard {
 	 * @return if the coordinate is empty
 	 */
 	public boolean isEmpty(Coordinate c) {
-		return board[c.getX()][c.getY()] == ' ';
+		return board[c.getX()][c.getY()].getChar() == ' ';
 	}
 
 	/**
@@ -134,7 +134,7 @@ public abstract class CharBoard {
 	 * 
 	 * @return the board
 	 */
-	public char[][] getBoard() {
+	public Square[][] getBoard() {
 		return board;
 	}
 }
