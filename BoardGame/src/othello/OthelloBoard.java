@@ -11,10 +11,10 @@ public class OthelloBoard extends CharBoard {
 
 	@Override
 	public void initializeBoard() {
-		for (int j = 0; j < getBoard().length; j++)
-			for (int i = 0; i < getBoard()[j].length; i++)
-				getBoard()[j][i] = ' ';
-		getBoard()[4][4] = 'X';
+		for (int j = 0; j < getCharBoard().length; j++)
+			for (int i = 0; i < getCharBoard()[j].length; i++)
+				getCharBoard()[j][i] = ' ';
+		getCharBoard()[4][4] = 'X';
 	}
 
 	@Override
@@ -24,11 +24,11 @@ public class OthelloBoard extends CharBoard {
 		int team2 = 0;
 
 		// check for empty squares
-		for (int i = 0; i < getBoard().length; i++) {
-			for (int j = 0; j < getBoard()[i].length; j++) {
-				if (getBoard()[i][j] == 'X')
+		for (int i = 0; i < getCharBoard().length; i++) {
+			for (int j = 0; j < getCharBoard()[i].length; j++) {
+				if (getCharBoard()[i][j] == 'X')
 					team1++;
-				if (getBoard()[i][j] == 'O')
+				if (getCharBoard()[i][j] == 'O')
 					team2++;
 				else
 					return ' ';

@@ -28,10 +28,10 @@ public class TicTacToeBoard extends CharBoard {
 	public TicTacToeBoard(CharBoard board) {
 		super(3);
 
-		if (board.getBoard().length == 3 && board.getBoard()[0].length == 3) {
-			for (int j = 0; j < getBoard().length; j++) {
-				for (int i = 0; i < getBoard()[j].length; i++) {
-					getBoard()[j][i] = board.getBoard()[j][i];
+		if (board.getCharBoard().length == 3 && board.getCharBoard()[0].length == 3) {
+			for (int j = 0; j < getCharBoard().length; j++) {
+				for (int i = 0; i < getCharBoard()[j].length; i++) {
+					getCharBoard()[j][i] = board.getCharBoard()[j][i];
 				}
 			}
 		}
@@ -61,7 +61,7 @@ public class TicTacToeBoard extends CharBoard {
 	 */
 	@Override
 	public char gameEnd() {
-		char[][] tempBoard = getBoard();
+		char[][] tempBoard = getCharBoard();
 
 		// check rows
 		for (int i = 0; i < tempBoard.length; i++)

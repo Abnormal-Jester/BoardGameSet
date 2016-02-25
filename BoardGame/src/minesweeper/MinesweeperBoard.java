@@ -60,7 +60,7 @@ public class MinesweeperBoard extends CharBoard {
 
 				c = new Coordinate(x, y);
 			} while (!isEmpty(c));
-			getBoard()[y][x] = BOMB.getChar();
+			getCharBoard()[y][x] = BOMB.getChar();
 		}
 	}
 
@@ -72,7 +72,7 @@ public class MinesweeperBoard extends CharBoard {
 		for (int j = 0; j < size; j++) {
 			for (int i = 0; i < size; i++) {
 
-				if (getBoard()[j][i] == BOMB.getChar())
+				if (getCharBoard()[j][i] == BOMB.getChar())
 					visibleBoard[j][i] = 9; // a value of 9 means that the
 											// square has a bomb on it
 				else
@@ -116,7 +116,7 @@ public class MinesweeperBoard extends CharBoard {
 	 * @return 1 if there is a bomb and 0 if there is not a bomb
 	 */
 	private int hasBomb(int y, int x) {
-		if (getBoard()[y][x] == BOMB.getChar())
+		if (getCharBoard()[y][x] == BOMB.getChar())
 			return 1;
 		return 0;
 	}
@@ -134,7 +134,7 @@ public class MinesweeperBoard extends CharBoard {
 	 */
 	@Override
 	public boolean canPlace(PieceType piece, Coordinate c) {
-		return getBoard()[c.getX()][c.getY()] != OPEN.getChar();
+		return getCharBoard()[c.getX()][c.getY()] != OPEN.getChar();
 	}
 
 	/**
@@ -182,7 +182,7 @@ public class MinesweeperBoard extends CharBoard {
 	 */
 	@Override
 	public String toString() {
-		char[][] tempBoard = getBoard();
+		char[][] tempBoard = getCharBoard();
 
 		String out = " ";
 		for (int i = 1; i <= tempBoard.length; i++)
@@ -230,7 +230,7 @@ public class MinesweeperBoard extends CharBoard {
 	 * @return the square the user can see
 	 */
 	private char showOpenSquares(int y, int x) {
-		if (getBoard()[y][x] == OPEN.getChar()) {
+		if (getCharBoard()[y][x] == OPEN.getChar()) {
 			// if the value is 9, it is a bomb so show a bomb
 			if (visibleBoard[y][x] == 9)
 				return BOMB.getChar();

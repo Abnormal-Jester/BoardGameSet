@@ -134,7 +134,7 @@ public abstract class CharBoard {
 	 * 
 	 * @return the board
 	 */
-	public char[][] getBoard() {
+	public char[][] getCharBoard() {
 		char[][] out = new char[board.length][board[0].length];
 		for (int j = 0; j < board.length; j++)
 			for (int i = 0; i < board[j].length; i++)
