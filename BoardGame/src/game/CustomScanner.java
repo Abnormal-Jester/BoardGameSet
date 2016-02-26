@@ -8,12 +8,8 @@ import exception.InputInvalidException;
  * This class reads the user's input in the context of a game.
  */
 public class CustomScanner {
-	/** This is the scanner that reads the user's input */
 	private final Scanner console;
 
-	/**
-	 * This constructs the scanner that reads the user's input.
-	 */
 	public CustomScanner() {
 		console = new Scanner(System.in);
 	}
@@ -56,16 +52,9 @@ public class CustomScanner {
 		}
 		return x;
 	}
-
-	/**
-	 * This method is an overloaded method that automatically sets the value of
-	 * low and high to the integer limits.
-	 * 
-	 * @param escape
-	 * @return
-	 */
-	public int getBoundInt(boolean escape) {
-		return getBoundInt(Integer.MIN_VALUE, Integer.MAX_VALUE, escape);
+	
+	public int getInt() {
+		return getInt(false);
 	}
 
 	/**
@@ -78,16 +67,6 @@ public class CustomScanner {
 	 */
 	public int getBoundInt(int low, int high) {
 		return getBoundInt(low, high, true);
-	}
-
-	/**
-	 * This method is an overloaded method that automatically sets the value of
-	 * low and high to the integer limits and escape to true.
-	 * 
-	 * @return
-	 */
-	public int getBoundInt() {
-		return getBoundInt(Integer.MIN_VALUE, Integer.MIN_VALUE, true);
 	}
 
 	/**
