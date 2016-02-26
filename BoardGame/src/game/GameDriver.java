@@ -10,11 +10,10 @@ import tictactoe.TicTacToeSinglePlayer;
  * This class runs the games that are in this game pack.
  */
 public class GameDriver {
+	private static CustomScanner console = new CustomScanner();
 
 	public static void main(String[] args) {
 		int selection;
-		CustomScanner console = new CustomScanner();
-
 		while (true) {
 			System.out.println("1. TicTacToe\n2. Minesweeper\n3. Othello\n4. Help\n5. Exit");
 			System.out.print("Please enter the number of the game you want " + "to play: ");
@@ -23,24 +22,7 @@ public class GameDriver {
 				selection = console.getBoundInt(1, 5);
 				switch (selection) {
 				case 1:
-					System.out.println("1. Play against another human\n" + "2. Play against the AI as X\n"
-							+ "3. Play agaist the AI as O");
-					System.out.print("Please enter the number of the game mode you want to play: ");
-					selection = console.getBoundInt(1, 3);
-					switch (selection) {
-					case 1:
-						new TicTacToe().startGame();
-						break;
-					case 2:
-						new TicTacToeSinglePlayer(PieceType.X).startGame();
-						break;
-					case 3:
-						new TicTacToeSinglePlayer(PieceType.O).startGame();
-						break;
-					default:
-						System.out.println("No Tic Tac Toe game started.");
-						break;
-					}
+					startTicTacToe();
 					break;
 				case 2:
 					System.out.print("Enter a board size between 3 and 20: ");
@@ -65,6 +47,26 @@ public class GameDriver {
 			} catch (InputInvalidException e) {
 				System.out.println("Try again.");
 			}
+		}
+	}
+	
+	private static void startTicTacToe() {
+		System.out.println("1. Play against another human\n" + "2. Play against the AI as X\n"
+				+ "3. Play agaist the AI as O");
+		System.out.print("Please enter the number of the game mode you want to play: ");
+		switch (console.getBoundInt(1, 3)) {
+		case 1:
+			new TicTacToe().startGame();
+			break;
+		case 2:
+			new TicTacToeSinglePlayer(PieceType.X).startGame();
+			break;
+		case 3:
+			new TicTacToeSinglePlayer(PieceType.O).startGame();
+			break;
+		default:
+			System.out.println("No Tic Tac Toe game started.");
+			break;
 		}
 	}
 
