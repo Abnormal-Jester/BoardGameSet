@@ -25,8 +25,7 @@ public class GameDriver {
 					startTicTacToe();
 					break;
 				case 2:
-					System.out.print("Enter a board size between 3 and 20: ");
-					new Minesweeper(console.getBoundInt(3, 20)).startGame();
+					startMinesweeper();
 					break;
 				case 3:
 					System.out.println("Not yet implemented");
@@ -43,16 +42,16 @@ public class GameDriver {
 				}
 
 				console.pressToContinue();
-				
+
 			} catch (InputInvalidException e) {
 				System.out.println("Try again.");
 			}
 		}
 	}
-	
+
 	private static void startTicTacToe() {
-		System.out.println("1. Play against another human\n" + "2. Play against the AI as X\n"
-				+ "3. Play agaist the AI as O");
+		System.out.println(
+				"1. Play against another human\n" + "2. Play against the AI as X\n" + "3. Play agaist the AI as O");
 		System.out.print("Please enter the number of the game mode you want to play: ");
 		switch (console.getBoundInt(1, 3)) {
 		case 1:
@@ -68,6 +67,11 @@ public class GameDriver {
 			System.out.println("No Tic Tac Toe game started.");
 			break;
 		}
+	}
+
+	private static void startMinesweeper() {
+		System.out.print("Enter a board size between 3 and 20: ");
+		new Minesweeper(console.getBoundInt(3, 20)).startGame();
 	}
 
 	/**
