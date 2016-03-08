@@ -4,6 +4,7 @@ import exception.PlacementFailedException;
 
 public abstract class Board {
 	private Square[][] board;
+	private Move currentMove;
 
 	public Board(int size) {
 		board = new Square[size][size];
@@ -17,16 +18,28 @@ public abstract class Board {
 				board[row][col] = new Square(' ');
 	}
 
+	public void setMove(Move move) {
+		currentMove = move;
+	}
+
+	public Move getMove() {
+		return currentMove;
+	}
+
+
 	public void attemptPlace(PieceType piece, Coordinate c) {
 		if (canPlace(piece, c)) {
-			place(piece, c);
+			place();
 		} else {
 			throw new PlacementFailedException("The piece cannot be placed on square \"" + c.toAlphaNumerical() + '\"');
 		}
 	}
 
-	public void place(PieceType piece, Coordinate c) {
-		board[c.getX()][c.getY()].setChar(piece.getChar());
+	public void place() {
+		int row = currentMove.getCoordinate().getX();
+		int col = currentMove.getCoordinate().getY();
+		PieceType piece = currentMove.getPiece();
+		board[row][col].setChar(piece.getChar());
 	}
 
 	public abstract boolean canPlace(PieceType piece, Coordinate c);
