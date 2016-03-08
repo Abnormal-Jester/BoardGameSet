@@ -8,6 +8,7 @@ public abstract class Board {
 
 	public Board(int size) {
 		board = new Square[size][size];
+		currentMove = null;
 
 		initializeBoard();
 	}
@@ -22,27 +23,26 @@ public abstract class Board {
 		currentMove = move;
 	}
 
-	public Move getMove() {
-		return currentMove;
-	}
-
-	public void attemptPlace() {
-		if (canPlace()) {
-			place();
+	public void attemptMove() {
+		if (validMove()) {
+			executeMove();
 		} else {
+			// TODO change failure message
 			throw new PlacementFailedException("The piece cannot be placed on square \""
 					+ currentMove.getCoordinate().toAlphaNumericalString() + '\"');
 		}
 	}
 
-	public void place() {
+	public void executeMove() {
 		int row = currentMove.getCoordinate().getCol();
 		int col = currentMove.getCoordinate().getRow();
 		PieceType piece = currentMove.getPiece();
 		board[row][col].setChar(piece.getChar());
 	}
 
-	public abstract boolean canPlace();
+	public boolean validMove() {
+		return squareExists(currentMove.getCoordinate());
+	}
 
 	public boolean isEmpty(Coordinate c) {
 		return board[c.getCol()][c.getRow()].getChar() == ' ';
@@ -118,4 +118,9 @@ public abstract class Board {
 				out[row][col] = board[row][col].getChar();
 		return out;
 	}
+
+	public Move getMove() {
+		return currentMove;
+	}
+
 }
