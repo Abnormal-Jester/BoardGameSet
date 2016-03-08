@@ -2,11 +2,9 @@ package game;
 
 import exception.PlacementFailedException;
 
-public abstract class Board {
-	private Square[][] board;
-	private Move currentMove;
+public abstract class SquareBoard {
 
-	public Board(int size) {
+	public SquareBoard(int size) {
 		board = new Square[size][size];
 		currentMove = null;
 
@@ -14,8 +12,8 @@ public abstract class Board {
 	}
 
 	public void initializeBoard() {
-		for (int row = 0; row < board.length; row++)
-			for (int col = 0; col < board[row].length; col++)
+		for (int row = 0; row < getSize(); row++)
+			for (int col = 0; col < getSize(); col++)
 				board[row][col] = new Square(' ');
 	}
 
@@ -34,10 +32,7 @@ public abstract class Board {
 	}
 
 	public void executeMove() {
-		int row = currentMove.getCoordinate().getCol();
-		int col = currentMove.getCoordinate().getRow();
-		PieceType piece = currentMove.getPiece();
-		board[row][col].setChar(piece.getChar());
+		getTargetSquare().setChar(currentMove.getPiece().getChar());
 	}
 
 	public boolean validMove() {
@@ -58,7 +53,7 @@ public abstract class Board {
 
 	protected String labelEachColumn() {
 		String out = "";
-		for (int col = 1; col <= board.length; col++)
+		for (int col = 1; col <= getSize(); col++)
 			out += " " + labelColumn(col);
 
 		return out;
@@ -70,7 +65,7 @@ public abstract class Board {
 
 	protected String printAllRows() {
 		String out = "";
-		for (int row = 0; row < board[0].length; row++) {
+		for (int row = 0; row < getSize(); row++) {
 			out += printRowLabel(row) + " ";
 			out += printRow(row) + "\n";
 			out += printRowDivider(!isBottomRow(row)) + "\n";
@@ -84,7 +79,7 @@ public abstract class Board {
 
 	protected String printRow(int row) {
 		String out = "" + board[row][0].getChar();
-		for (int col = 1; col < board.length; col++) {
+		for (int col = 1; col < getSize(); col++) {
 			out += "|" + board[row][col].getChar();
 		}
 		return out;
@@ -93,7 +88,7 @@ public abstract class Board {
 	protected String printRowDivider(boolean shouldPrint) {
 		if (shouldPrint) {
 			String out = "  -";
-			for (int col = 1; col < board.length; col++)
+			for (int col = 1; col < getSize(); col++)
 				out += "--";
 			return out;
 		} else {
@@ -102,13 +97,13 @@ public abstract class Board {
 	}
 
 	protected boolean isBottomRow(int row) {
-		return board.length - 1 == row;
+		return getSize() - 1 == row;
 	}
 
 	public abstract char gameEnd();
 
 	public boolean squareExists(Coordinate out) {
-		return out.getCol() >= 0 && out.getCol() < board[0].length && out.getRow() >= 0 && out.getRow() < board.length;
+		return out.getCol() >= 0 && out.getCol() < getSize() && out.getRow() >= 0 && out.getRow() < getSize();
 	}
 
 	public char[][] getCharBoard() {
@@ -119,8 +114,18 @@ public abstract class Board {
 		return out;
 	}
 
+	private Square getTargetSquare() {
+		return board[currentMove.getCol()][currentMove.getRow()];
+	}
+
 	public Move getMove() {
 		return currentMove;
 	}
 
+	public int getSize() {
+		return board.length;
+	}
+
+	private Square[][] board;
+	private Move currentMove;
 }
