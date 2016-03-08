@@ -26,12 +26,12 @@ public abstract class Board {
 		return currentMove;
 	}
 
-
-	public void attemptPlace(PieceType piece, Coordinate c) {
-		if (canPlace(piece, c)) {
+	public void attemptPlace() {
+		if (canPlace()) {
 			place();
 		} else {
-			throw new PlacementFailedException("The piece cannot be placed on square \"" + c.toAlphaNumericalString() + '\"');
+			throw new PlacementFailedException("The piece cannot be placed on square \""
+					+ currentMove.getCoordinate().toAlphaNumericalString() + '\"');
 		}
 	}
 
@@ -42,7 +42,7 @@ public abstract class Board {
 		board[row][col].setChar(piece.getChar());
 	}
 
-	public abstract boolean canPlace(PieceType piece, Coordinate c);
+	public abstract boolean canPlace();
 
 	public boolean isEmpty(Coordinate c) {
 		return board[c.getCol()][c.getRow()].getChar() == ' ';
@@ -58,22 +58,22 @@ public abstract class Board {
 
 	protected String labelEachColumn() {
 		String out = "";
-		for (int i = 1; i <= board.length; i++)
-			out += " " + labelColumn(i);
+		for (int col = 1; col <= board.length; col++)
+			out += " " + labelColumn(col);
 
 		return out;
 	}
 
-	protected String labelColumn(int i) {
-		return "" + (i % 10 == 0 ? i / 10 : i % 10);
+	protected String labelColumn(int col) {
+		return "" + (col % 10 == 0 ? col / 10 : col % 10);
 	}
 
 	protected String printAllRows() {
 		String out = "";
-		for (int j = 0; j < board[0].length; j++) {
-			out += printRowLabel(j) + " ";
-			out += printRow(j) + "\n";
-			out += printRowDivider(!isBottomRow(j)) + "\n";
+		for (int row = 0; row < board[0].length; row++) {
+			out += printRowLabel(row) + " ";
+			out += printRow(row) + "\n";
+			out += printRowDivider(!isBottomRow(row)) + "\n";
 		}
 		return out;
 	}
@@ -82,10 +82,10 @@ public abstract class Board {
 		return "" + (char) ('A' + row);
 	}
 
-	protected String printRow(int j) {
-		String out = "" + board[j][0].getChar();
-		for (int i = 1; i < board.length; i++) {
-			out += "|" + board[j][i].getChar();
+	protected String printRow(int row) {
+		String out = "" + board[row][0].getChar();
+		for (int col = 1; col < board.length; col++) {
+			out += "|" + board[row][col].getChar();
 		}
 		return out;
 	}
@@ -93,7 +93,7 @@ public abstract class Board {
 	protected String printRowDivider(boolean shouldPrint) {
 		if (shouldPrint) {
 			String out = "  -";
-			for (int i = 1; i < board.length; i++)
+			for (int col = 1; col < board.length; col++)
 				out += "--";
 			return out;
 		} else {
@@ -113,9 +113,9 @@ public abstract class Board {
 
 	public char[][] getCharBoard() {
 		char[][] out = new char[board.length][board[0].length];
-		for (int j = 0; j < board.length; j++)
-			for (int i = 0; i < board[j].length; i++)
-				out[j][i] = board[j][i].getChar();
+		for (int row = 0; row < board.length; row++)
+			for (int col = 0; col < board[row].length; col++)
+				out[row][col] = board[row][col].getChar();
 		return out;
 	}
 }
