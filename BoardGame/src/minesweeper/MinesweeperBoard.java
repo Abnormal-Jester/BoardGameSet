@@ -107,7 +107,7 @@ public class MinesweeperBoard extends CharBoard {
 		for (int i = 0; i < 8; i++) {
 			c = new Coordinate(x + xOffset[i], y + yOffset[i]);
 			if (squareExists(c)) {
-				bombs += hasBomb(c.getY(), c.getX());
+				bombs += hasBomb(c.getRow(), c.getCol());
 			}
 		}
 
@@ -142,7 +142,7 @@ public class MinesweeperBoard extends CharBoard {
 	 */
 	@Override
 	public boolean canPlace(PieceType piece, Coordinate c) {
-		return getCharBoard()[c.getX()][c.getY()] != OPEN.getChar();
+		return getCharBoard()[c.getCol()][c.getRow()] != OPEN.getChar();
 	}
 
 	/**

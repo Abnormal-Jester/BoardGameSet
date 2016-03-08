@@ -44,7 +44,7 @@ public abstract class CharBoard {
 		if (canPlace(piece, c)) {
 			place(piece, c);
 		} else {
-			throw new PlacementFailedException("The piece cannot be placed on square \"" + c.toAlphaNumerical() + '\"');
+			throw new PlacementFailedException("The piece cannot be placed on square \"" + c.toAlphaNumericalString() + '\"');
 		}
 	}
 
@@ -58,7 +58,7 @@ public abstract class CharBoard {
 	 *            the coordinates of the square the piece will be placed on
 	 */
 	public void place(PieceType piece, Coordinate c) {
-		board[c.getX()][c.getY()].setChar(piece.getChar());
+		board[c.getCol()][c.getRow()].setChar(piece.getChar());
 	}
 
 	/**
@@ -80,7 +80,7 @@ public abstract class CharBoard {
 	 * @return if the coordinate is empty
 	 */
 	public boolean isEmpty(Coordinate c) {
-		return board[c.getX()][c.getY()].getChar() == ' ';
+		return board[c.getCol()][c.getRow()].getChar() == ' ';
 	}
 
 	/**
@@ -160,7 +160,7 @@ public abstract class CharBoard {
 	 * @return if the square exists
 	 */
 	public boolean squareExists(Coordinate out) {
-		return out.getX() >= 0 && out.getX() < board[0].length && out.getY() >= 0 && out.getY() < board.length;
+		return out.getCol() >= 0 && out.getCol() < board[0].length && out.getRow() >= 0 && out.getRow() < board.length;
 	}
 
 	/**

@@ -31,13 +31,13 @@ public abstract class Board {
 		if (canPlace(piece, c)) {
 			place();
 		} else {
-			throw new PlacementFailedException("The piece cannot be placed on square \"" + c.toAlphaNumerical() + '\"');
+			throw new PlacementFailedException("The piece cannot be placed on square \"" + c.toAlphaNumericalString() + '\"');
 		}
 	}
 
 	public void place() {
-		int row = currentMove.getCoordinate().getX();
-		int col = currentMove.getCoordinate().getY();
+		int row = currentMove.getCoordinate().getCol();
+		int col = currentMove.getCoordinate().getRow();
 		PieceType piece = currentMove.getPiece();
 		board[row][col].setChar(piece.getChar());
 	}
@@ -45,7 +45,7 @@ public abstract class Board {
 	public abstract boolean canPlace(PieceType piece, Coordinate c);
 
 	public boolean isEmpty(Coordinate c) {
-		return board[c.getX()][c.getY()].getChar() == ' ';
+		return board[c.getCol()][c.getRow()].getChar() == ' ';
 	}
 
 	public String toString() {
@@ -108,7 +108,7 @@ public abstract class Board {
 	public abstract char gameEnd();
 
 	public boolean squareExists(Coordinate out) {
-		return out.getX() >= 0 && out.getX() < board[0].length && out.getY() >= 0 && out.getY() < board.length;
+		return out.getCol() >= 0 && out.getCol() < board[0].length && out.getRow() >= 0 && out.getRow() < board.length;
 	}
 
 	public char[][] getCharBoard() {

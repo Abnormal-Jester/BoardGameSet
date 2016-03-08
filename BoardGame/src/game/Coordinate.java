@@ -1,68 +1,32 @@
 package game;
 
-/**
- * Two integers that corresponds to squares on a game board.
- */
 public class Coordinate {
-	private int x;
-	private int y;
-
-	/**
-	 * This constructor defines the coordinates.
-	 * 
-	 * @param x
-	 * @param y
-	 */
-	public Coordinate(int x, int y) {
-		setCoordinate(x, y);
+	public Coordinate(int col, int row) {
+		setCoordinate(col, row);
 	}
 
-	/**
-	 * This method sets the value of x and y
-	 * 
-	 * @param x
-	 * @param y
-	 */
-	public void setCoordinate(int x, int y) {
-		this.x = x;
-		this.y = y;
+	public void setCoordinate(int col, int row) {
+		this.col = col;
+		this.row = row;
 	}
 
-	/**
-	 * This method return x.
-	 * 
-	 * @return x
-	 */
-	public int getX() {
-		return x;
+	public int getCol() {
+		return col;
 	}
 
-	/**
-	 * This method return y.
-	 * 
-	 * @return y
-	 */
-	public int getY() {
-		return y;
+	public int getRow() {
+		return row;
 	}
 
-	/**
-	 * This method returns the coordinates in (0, 0) form.
-	 * 
-	 * @return the coordinates in numerical form
-	 */
 	@Override
 	public String toString() {
-		return "( " + x + " , " + y + " )";
+		return "( " + col + " , " + row + " )";
 	}
 
-	/**
-	 * This method returns the coordinates in alphanumerical form, the same way
-	 * a user would enter the coordinate.
-	 * 
-	 * @return the coordinates in alphanumerical form
-	 */
-	public String toAlphaNumerical() {
-		return "" + (char) ('A' + y) + (x + 1);
+	public String toAlphaNumericalString() {
+		return "" + (char) ('A' + row) + (col + 1);
 	}
+
+	private int col;
+	private int row;
 }
